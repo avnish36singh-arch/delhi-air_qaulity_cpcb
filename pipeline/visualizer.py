@@ -87,7 +87,7 @@ def plot_seasonal_aqi_dynamics(df, output_path):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6), dpi=300)
 
     # Boxplot
-    sns.boxplot(data=plot_df, x='Season', y='AQI', order=season_order, palette='Set2', ax=ax1, width=0.5, fliersize=3)
+    sns.boxplot(data=plot_df, x='Season', y='AQI', hue='Season', order=season_order, palette='Set2', ax=ax1, width=0.5, fliersize=3, legend=False)
     ax1.set_title("AQI Variation Across Indian Seasons", fontsize=14, fontweight='bold')
     ax1.set_xlabel("Season", fontsize=12)
     ax1.set_ylabel("Air Quality Index (AQI)", fontsize=12)

@@ -143,11 +143,17 @@ def run_pipeline(base_dir):
     source_df = run_source_analysis(aqi_df, sources_plot)
     
     # Export synchronized JSON for Interactive Web Dashboard
-    print(f"\n[Export] Synchronizing cleaned data to Web Dashboard JSON: {json_path}...")
+    web_data_dir = os.path.join(base_dir, "web", "data")
+    os.makedirs(web_data_dir, exist_ok=True)
+    web_json_path = os.path.join(web_data_dir, "cleaned.json")
+    
+    print(f"\n[Export] Synchronizing cleaned data to Web Dashboard JSON feeds...")
     records = json.loads(source_df.to_json(orient="records", date_format="iso"))
     with open(json_path, "w") as f:
         json.dump(records, f, indent=2, default=str)
-    print("Dashboard JSON synchronized successfully.")
+    with open(web_json_path, "w") as f:
+        json.dump(records, f, indent=2, default=str)
+    print(f"Dashboard JSON synchronized to {json_path} and {web_json_path}.")
     
     print("\n" + "=" * 70)
     print("MASTER PIPELINE EXECUTION COMPLETED SUCCESSFULLY!")

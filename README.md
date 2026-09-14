@@ -249,11 +249,14 @@ Open `http://localhost:8000` in any modern web browser.
 ## Repository Directory Manifest
 
 ```
+├── .github/
+│   └── workflows/
+│       └── ci.yml                     # Continuous Integration workflow (automated testing on push)
 ├── data/
 │   ├── raw/                           # Heterogeneous multi-year station monitoring CSVs (2017-2023)
 │   └── processed/                     # Staged and clean harmonized datasets with computed CPCB NAQI
 ├── outputs/
-│   ├── data/                          # Synchronized JSON feed (cleaned.json) for interactive dashboard
+│   ├── data/                          # Synchronized JSON feed (cleaned.json)
 │   └── plots/                         # Nine 300-DPI publication figures (01 to 09)
 ├── pipeline/
 │   ├── data_ingestion.py              # Multi-year schema normalization and datetime parser
@@ -266,6 +269,8 @@ Open `http://localhost:8000` in any modern web browser.
 │   ├── air_quality_analysis_report.md # Comprehensive 10-section formal scientific analytical report
 │   └── component_statistics.csv        # Summary parametric and non-parametric statistics (24 components)
 ├── web/
+│   ├── data/
+│   │   └── cleaned.json               # Self-contained dashboard dataset (enables GitHub Pages hosting)
 │   ├── index.html                     # Responsive dark-mode dashboard interface
 │   ├── app.js                         # Plotly.js visualization and data binding controller
 │   └── style.css                      # Modern CSS design system

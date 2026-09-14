@@ -43,7 +43,11 @@ function bySeason(data, field) {
 
 document.querySelectorAll('.chart').forEach(el => el.innerHTML = '<div class="loading">Loading</div>');
 
-fetch('../outputs/data/cleaned.json')
+const DATA_URL = './data/cleaned.json';
+const FALLBACK_URL = '../outputs/data/cleaned.json';
+
+fetch(DATA_URL)
+  .catch(() => fetch(FALLBACK_URL))
   .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
   .then(data => {
     renderStats(data);
@@ -191,7 +195,7 @@ function renderMeteo(data) {
   const valid = data.filter(d => d.AQI != null);
   const pairs = [
     ['AT', 'AQI', '#3b82f6', 'chart-met-temp', 'Temperature (°C) vs AQI'],
-    ['WS', 'AQI', '#10b981', 'chart-met-wind', 'Wind Speed (m/s) vs AQI'],
+    ['BP', 'AQI', '#10b981', 'chart-met-wind', 'Pressure (hPa) vs AQI'],
     ['RH', 'AQI', '#f59e0b', 'chart-met-rh', 'Humidity (%) vs AQI']
   ];
   pairs.forEach(([xf, yf, c, id, title]) => {
