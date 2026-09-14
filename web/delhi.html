@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investigation 01: Delhi NCR Airshed — Signal Earth</title>
+  <meta name="description" content="Signal Earth Investigation 01: A luxury visual investigation into multi-year ambient air quality, CPCB NAQI telemetry, and predictive AI forecasting in Delhi, India.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. NAVIGATION BAR (Death Zone Style)
+       ========================================================================= -->
+  <header class="dz-navbar">
+    <a href="index.html" class="dz-logo" title="Back to Signal Earth Overview">
+      <div class="dz-logo-mark">
+        <span style="color: #06b6d4; margin-right: 0.4rem; font-size: 1rem;">&larr;</span>
+        <span>SIGNAL EARTH</span>
+        <span class="dz-inv-pill">INV 01: DELHI</span>
+      </div>
+    </a>
+
+    <ul class="dz-nav-center">
+      <li><a href="#about" class="active">About Us</a></li>
+      <li><a href="#investigations">Investigations</a></li>
+      <li><a href="#exposure">The Anatomy</a></li>
+      <li><a href="#airshed">The Airshed</a></li>
+      <li><a href="#telemetry">Telemetry</a></li>
+      <li><a href="#forecast">Predictive AI</a></li>
+      <li><a href="#downloads">Archive</a></li>
+    </ul>
+
+    <div class="dz-nav-social">
+      <a href="https://www.instagram.com/signalearthhq/" target="_blank" rel="noopener noreferrer" class="social-pill-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://www.linkedin.com/company/signalearth/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" class="social-pill-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================================
+         2. HERO SECTION (Death Zone Mountain Layout)
+         ========================================================================= -->
+    <section class="dz-hero-section" id="about">
+      <div class="dz-hero-canvas">
+        <div class="dz-hero-focal-wrap">
+          <img src="assets/hero_satellite_earth.jpg" alt="Atmospheric Remote Sensing and Planetary Dynamic Contours over Northern India" class="dz-hero-focal-img">
+        </div>
+
+        <div class="dz-hero-editorial-panel">
+          <div class="dz-section-tag">About the Investigation</div>
+          <h1 class="dz-hero-headline">Signal Earth is atmospheric intelligence</h1>
+          <p class="dz-hero-paragraph">We are dedicated to building public-health accountability through multi-year continuous station telemetry and satellite remote sensing across the world's most acute airsheds.</p>
+        </div>
+      </div>
+
+      <!-- Delicate vertical golden connecting line -->
+      <div class="dz-vertical-guide-line"></div>
+    </section>
+
+    <!-- =========================================================================
+         3. GIANT TYPOGRAPHIC MASK SECTION (The "8000m" Equivalent)
+         ========================================================================= -->
+    <section class="dz-giant-stat-section">
+      <div class="dz-giant-stat-text">529 µg/m³</div>
+      <div class="dz-giant-tagline">This is our telemetry &middot; Peak PM2.5 exposure recorded at Alipur, Delhi</div>
+    </section>
+
+    <!-- =========================================================================
+         4. ASYMMETRIC NARRATIVE SECTION (The "A History of Us" Equivalent)
+         ========================================================================= -->
+    <section class="dz-narrative-section" id="exposure">
+      <div class="dz-narrative-body">
+        <div class="dz-section-tag">A History of the Crisis</div>
+        <h2 class="dz-narrative-title">The Anatomy of Exposure</h2>
+        <p>At Signal Earth, our investigation began with an unyielding mandate: to dissect seven years of continuous ambient telemetry from Delhi's northern corridor. What the instruments recorded was not an occasional spike, but an enduring chronic baseline.</p>
+        <p>Measuring under 2.5 microns across, fine particulate matter (&thinsp;PM<sub>2.5</sub>&thinsp;) bypasses upper respiratory cilia, migrating past cellular barriers into pulmonary gas-exchange alveoli and entering systemic blood circulation. Over 62.6% of all monitored days breached national safety thresholds, while 78.8% violated acceptable air quality limits.</p>
+      </div>
+
+      <div class="dz-photo-accent-wrapper">
+        <img src="assets/delhi_iss_night.jpg" alt="NASA Space Station Earth Observation of the Himalayan Barrier and Glacial Ridges" class="dz-story-photo">
+        <div class="dz-accent-block">
+          <span class="dz-accent-chip">STATION LOG</span>
+          <span class="dz-accent-code">28°47′N · 77°08′E</span>
+          <span class="dz-accent-elev">ELEV 214M AMSL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. WIDE PANORAMIC BREAK (The "Our Sustainable Journey" Equivalent)
+         ========================================================================= -->
+    <section class="dz-panorama-section" id="airshed">
+      <div class="dz-panorama-frame">
+        <img src="assets/himalaya_haze_panorama.jpg" alt="NASA Earth Observatory Satellite Panorama of Winter Haze Trapped Along the Himalayas">
+      </div>
+
+      <div class="dz-panorama-editorial">
+        <h2 class="dz-panorama-headline">The Airshed Knows No Borders</h2>
+        <div class="dz-panorama-text">
+          <p>Our investigation reveals that Delhi's crisis cannot be understood through city limits alone. Bounded by the towering Himalayan mountain barrier to the north, the entire Indo-Gangetic Basin functions as a single enclosed atmospheric bowl.</p>
+          <p style="margin-top: 1rem;">During post-monsoon and winter months, cold ground-level radiation inversions trap transboundary agricultural residue smoke, industrial emissions, and urban vehicular exhaust in a stagnant planetary boundary layer less than 300 meters above ground.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. MINIMALIST LUXURY DATA WIDGETS
+         ========================================================================= -->
+    <section class="dz-data-section" id="telemetry">
+      <div class="dz-section-tag" style="text-align: center; margin-bottom: 3rem;">Master Telemetry &middot; Empirical Analytics</div>
+
+      <!-- Widget 1: Master 7-Year AQI Trajectory -->
+      <div class="dz-widget-card">
+        <div class="dz-widget-header">
+          <div>
+            <div class="dz-hud-status-row">
+              <span class="dz-beacon-live"></span>
+              <span class="dz-hud-badge">TELEMETRY STREAM · STATION ALIPUR-01</span>
+              <span class="dz-hud-coord">28.7997°N, 77.1332°E · ELEV 214M</span>
+            </div>
+            <h3 class="dz-widget-title">Continuous Multi-Year Atmospheric AQI Record</h3>
+            <p class="dz-widget-subtitle">Daily CPCB NAQI telemetry with 7-day and 30-day moving momentum overlaid on regulatory threshold markers.</p>
+          </div>
+          <div class="dz-filter-pill-group" id="year-filter-group">
+            <button class="dz-filter-pill active" data-year="ALL">All Years</button>
+            <button class="dz-filter-pill" data-year="2018">2018</button>
+            <button class="dz-filter-pill" data-year="2021">2021</button>
+            <button class="dz-filter-pill" data-year="2022">2022</button>
+            <button class="dz-filter-pill" data-year="2023">2023</button>
+          </div>
+        </div>
+
+        <!-- Telemetry HUD KPI Strip -->
+        <div class="dz-telemetry-hud-strip">
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">PEAK PM2.5 CONCENTRATION</div>
+            <div class="dz-hud-strip-val text-cyan">529.0 µg/m³</div>
+          </div>
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">PEAK COMPUTED AQI</div>
+            <div class="dz-hud-strip-val text-rose">500.0 (HAZARDOUS)</div>
+          </div>
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">SAFETY THRESHOLD BREACH</div>
+            <div class="dz-hud-strip-val text-amber">62.6% OF ALL DAYS</div>
+          </div>
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">WINTER INVERSION RATIO</div>
+            <div class="dz-hud-strip-val text-lime">3.4× BASELINE</div>
+          </div>
+        </div>
+
+        <div id="chart-timeseries" style="width: 100%; min-height: 520px;"></div>
+      </div>
+
+      <!-- Widget 2: Directional Polar Wind Rose & Source Attribution -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;" class="grid-dual">
+        <div class="dz-widget-card">
+          <div class="dz-widget-header">
+            <div>
+              <h3 class="dz-widget-title">Directional Particulate Rose</h3>
+              <p class="dz-widget-subtitle">Mean PM2.5 and PM10 concentration intensity across 16 cardinal angles.</p>
+            </div>
+          </div>
+          <div id="chart-wind-rose" style="width: 100%; min-height: 440px;"></div>
+        </div>
+
+        <div class="dz-widget-card">
+          <div class="dz-widget-header">
+            <div>
+              <h3 class="dz-widget-title">Empirical Source Attribution</h3>
+              <p class="dz-widget-subtitle">Chemical diagnostic fingerprinting across monitored calendar days.</p>
+            </div>
+          </div>
+          <div id="chart-source-pie" style="width: 100%; min-height: 440px;"></div>
+        </div>
+      </div>
+
+      <!-- Widget 3: Predictive Machine Learning Forecast Lab -->
+      <div class="dz-widget-card" id="forecast" style="margin-top: 3rem;">
+        <div class="dz-widget-header">
+          <div>
+            <h3 class="dz-widget-title">Predictive Machine Learning Lab &middot; 24-Hour Ahead Forecast</h3>
+            <p class="dz-widget-subtitle">Out-of-time prospective testing (Calendar Year 2023) evaluated across 61 engineered lag and meteorological features.</p>
+          </div>
+        </div>
+
+        <!-- 4 KPI Boxes -->
+        <div class="dz-kpi-grid">
+          <div class="dz-kpi-box">
+            <div class="dz-kpi-num">0.769</div>
+            <div class="dz-kpi-desc">Test R&sup2; Score (2023)</div>
+          </div>
+          <div class="dz-kpi-box">
+            <div class="dz-kpi-num">54.98</div>
+            <div class="dz-kpi-desc">Root Mean Sq Error (RMSE)</div>
+          </div>
+          <div class="dz-kpi-box">
+            <div class="dz-kpi-num">39.69</div>
+            <div class="dz-kpi-desc">Mean Absolute Error (MAE)</div>
+          </div>
+          <div class="dz-kpi-box">
+            <div class="dz-kpi-num">62.2%</div>
+            <div class="dz-kpi-desc">Category Hit Rate</div>
+          </div>
+        </div>
+
+        <div id="chart-forecast-ts" style="width: 100%; min-height: 480px;"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. SIGNAL EARTH AIRSHED PORTFOLIO (Delhi & Kanpur Investigations)
+         ========================================================================= -->
+    <section class="dz-portfolio-section" id="investigations">
+      <div class="dz-section-tag" style="text-align: center; margin-bottom: 1.25rem;">Signal Earth Observatories &middot; Active Airshed Portfolio</div>
+      <h2 class="dz-portfolio-headline">Planetary Intelligence across the Indo-Gangetic Basin</h2>
+      <p class="dz-portfolio-sub">Signal Earth deploys rigorous, reproducible atmospheric intelligence pipelines across high-vulnerability urban and industrial corridors.</p>
+
+      <div class="dz-portfolio-grid">
+        <!-- Investigation 01: Delhi NCR (Flagship) -->
+        <div class="dz-portfolio-card active-card">
+          <div class="dz-portfolio-badge live">
+            <span class="dz-beacon-live"></span>
+            <span>INVESTIGATION 01 &middot; FLAGSHIP LIVE TELEMETRY</span>
+          </div>
+          <div class="dz-portfolio-location">Delhi NCR &middot; Northern Corridor (Alipur)</div>
+          <h3 class="dz-portfolio-title">Continuous Multi-Year CPCB Telemetry &amp; Predictive Machine Learning</h3>
+          <p class="dz-portfolio-desc">Dissecting seven years of high-frequency particulate records at Delhi's northern gateway. Analyzes winter radiation inversions, transboundary agricultural biomass plumes, and 24-hour ahead Random Forest predictive AI (R&sup2; = 0.77).</p>
+          <div class="dz-portfolio-meta">
+            <div class="dz-meta-pill">Station: CPCB Alipur-01</div>
+            <div class="dz-meta-pill">Peak PM2.5: 529 µg/m³</div>
+            <div class="dz-meta-pill">Features: 61 Lag &amp; Weather</div>
+            <div class="dz-meta-pill">Period: 2018–2023</div>
+          </div>
+          <div class="dz-portfolio-actions">
+            <a href="#telemetry" class="dz-portfolio-btn primary">Explore Delhi Telemetry &uarr;</a>
+            <a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer" class="dz-portfolio-btn secondary">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <span>GitHub Repo</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Investigation 02: Kanpur (Dual-Station Analysis) -->
+        <div class="dz-portfolio-card">
+          <div class="dz-portfolio-badge published">
+            <span class="dz-badge-dot"></span>
+            <span>INVESTIGATION 02 &middot; PUBLISHED REPORT</span>
+          </div>
+          <div class="dz-portfolio-location">Kanpur &middot; Industrial Gangetic Airshed</div>
+          <h3 class="dz-portfolio-title">Spatial Particulate Trends, Seasonal Spikes &amp; Weather Correlation</h3>
+          <p class="dz-portfolio-desc">Dual-station investigation across NSI Kalyanpur and Nehru Nagar using continuous CPCB/UPPCB telemetry via OpenAQ. Dissects a 5&times; November winter surge over August monsoon baseline, nocturnal boundary layer collapse (9–10 PM IST peak), and northerly upwind advection.</p>
+          <div class="dz-portfolio-meta">
+            <div class="dz-meta-pill">Stations: NSI Kalyanpur &amp; Nehru Nagar</div>
+            <div class="dz-meta-pill">Seasonality: 5&times; Winter Ratio</div>
+            <div class="dz-meta-pill">Diurnal: 9–10 PM Inversion Peak</div>
+            <div class="dz-meta-pill">Source: CPCB / UPPCB / OpenAQ</div>
+          </div>
+          <div class="dz-portfolio-actions">
+            <a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer" class="dz-portfolio-btn highlight">
+              <span>View Kanpur Investigation &rarr;</span>
+            </a>
+            <a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer" class="dz-portfolio-btn secondary">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <span>GitHub Repo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       8. FOOTER & SIGNAL EARTH COLLECTIVE
+       ========================================================================= -->
+  <footer class="dz-footer" id="downloads">
+    <div class="dz-footer-inner">
+      <div class="dz-footer-brand">
+        <h4>SIGNAL EARTH</h4>
+        <p>An open planetary intelligence initiative transforming continuous atmospheric sensor streams, regulatory telemetry, and satellite remote sensing into transparent environmental accountability.</p>
+      </div>
+
+      <div class="dz-footer-links-group">
+        <div class="dz-footer-col">
+          <h5>Airshed Investigations</h5>
+          <ul>
+            <li><a href="#telemetry">Investigation 01: Delhi NCR Airshed</a></li>
+            <li><a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer">Investigation 02: Kanpur Industrial Airshed</a></li>
+            <li><a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer">Delhi GitHub Repository</a></li>
+            <li><a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer">Kanpur GitHub Repository</a></li>
+          </ul>
+        </div>
+
+        <div class="dz-footer-col">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://www.instagram.com/signalearthhq/" target="_blank" rel="noopener noreferrer">Instagram (@signalearthhq)</a></li>
+            <li><a href="https://www.linkedin.com/company/signalearth/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer">LinkedIn (Signal Earth)</a></li>
+            <li><a href="data/cleaned.json" download="delhi_air_quality_clean.json">Download Cleaned Telemetry (JSON)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="dz-bottom-bar">
+      <span>&copy; 2026 Signal Earth &middot; Independent Atmospheric Telemetry &amp; Public Health Analytics</span>
+      <span>Empirical Data sourced via CPCB, DPCC &amp; UPPCB Open Telemetry</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

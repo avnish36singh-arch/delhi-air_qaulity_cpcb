@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investigation 02: Kanpur Industrial Airshed — Signal Earth</title>
+  <meta name="description" content="Signal Earth Investigation 02: Spatial PM2.5/PM10 trends, seasonal cycles, and weather correlation across two CPCB/UPPCB monitoring stations in Kanpur, India.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. NAVIGATION BAR
+       ========================================================================= -->
+  <header class="dz-navbar">
+    <a href="index.html" class="dz-logo" title="Back to Signal Earth Overview">
+      <div class="dz-logo-mark">
+        <span style="color: #a3e635; margin-right: 0.4rem; font-size: 1rem;">&larr;</span>
+        <span>SIGNAL EARTH</span>
+        <span class="dz-inv-pill" style="border-color: rgba(163, 230, 53, 0.4); color: #a3e635;">INV 02: KANPUR</span>
+      </div>
+    </a>
+
+    <ul class="dz-nav-center">
+      <li><a href="#overview" class="active">Overview</a></li>
+      <li><a href="#findings">Key Findings</a></li>
+      <li><a href="#seasonality">Seasonality</a></li>
+      <li><a href="#diurnal">Diurnal Cycle</a></li>
+      <li><a href="#gallery">Scientific Gallery</a></li>
+      <li><a href="#data">Open Data</a></li>
+    </ul>
+
+    <div class="dz-nav-social">
+      <a href="https://www.instagram.com/signalearthhq/" target="_blank" rel="noopener noreferrer" class="social-pill-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://www.linkedin.com/company/signalearth/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" class="social-pill-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================================
+         2. HERO SECTION
+         ========================================================================= -->
+    <section class="dz-hero-section" id="overview">
+      <div class="dz-hero-canvas">
+        <div class="dz-hero-focal-wrap">
+          <img src="assets/hero_satellite_earth.jpg" alt="Planetary Remote Sensing over the Indo-Gangetic Basin" class="dz-hero-focal-img">
+        </div>
+
+        <div class="dz-hero-editorial-panel">
+          <div class="dz-section-tag" style="color: #a3e635;">Investigation File 002 &middot; Gangetic Corridor</div>
+          <h1 class="dz-hero-headline">Kanpur: Spatial Particulate Dynamics &amp; Meteorological Dispersal</h1>
+          <p class="dz-hero-paragraph">An empirical investigation into continuous PM<sub>2.5</sub> and PM<sub>10</sub> telemetry across two monitoring stations in Kanpur, Uttar Pradesh (NSI Kalyanpur &amp; Nehru Nagar), analyzing seasonal inversion multipliers, boundary layer collapse, and weather correlations.</p>
+        </div>
+      </div>
+
+      <div class="dz-vertical-guide-line"></div>
+    </section>
+
+    <!-- =========================================================================
+         3. GIANT STAT
+         ========================================================================= -->
+    <section class="dz-giant-stat-section">
+      <div class="dz-giant-stat-text">5&times; SURGE</div>
+      <div class="dz-giant-tagline">November winter spike (~95 µg/m³) vs August monsoon baseline (~18 µg/m³) recorded in Kanpur</div>
+    </section>
+
+    <!-- =========================================================================
+         4. ASYMMETRIC NARRATIVE & CORE FINDINGS
+         ========================================================================= -->
+    <section class="dz-narrative-section" id="findings">
+      <div class="dz-narrative-body">
+        <div class="dz-section-tag" style="color: #a3e635;">Empirical Analysis</div>
+        <h2 class="dz-narrative-title">Dual-Station Urban Contrast</h2>
+        <p>Consistently ranked among the world's most acute urban airsheds, Kanpur presents a distinct geographical case study. This investigation compares two station typologies: <strong>NSI Kalyanpur</strong> (Station ID: 229252), representing an industrial and highway corridor on the city's western periphery, versus <strong>Nehru Nagar</strong> (Station ID: 5662), capturing dense commercial and residential traffic.</p>
+        <p>Continuous telemetry reveals that particulate severity is not localized to industrial point sources alone. Both stations track remarkably synchronized seasonal cycles, proving that broad meteorological trapping—specifically temperature inversions and calm boundary layers—dominates ground-level human exposure across the city.</p>
+      </div>
+
+      <div class="dz-photo-accent-wrapper">
+        <img src="assets/delhi_iss_night.jpg" alt="Nocturnal Remote Sensing over Gangetic Basin" class="dz-story-photo">
+        <div class="dz-accent-block">
+          <span class="dz-accent-chip">STATIONS</span>
+          <span class="dz-accent-code">KALYANPUR &middot; NEHRU NAGAR</span>
+          <span class="dz-accent-elev">CPCB / UPPCB / OPENAQ</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. INTERACTIVE TELEMETRY WIDGETS
+         ========================================================================= -->
+    <section class="dz-data-section" id="seasonality">
+      <div class="dz-section-tag" style="text-align: center; margin-bottom: 3rem;">Station Telemetry &middot; Empirical Visualizations</div>
+
+      <!-- Widget 1: Monthly Seasonal Cycle -->
+      <div class="dz-widget-card">
+        <div class="dz-widget-header">
+          <div>
+            <div class="dz-hud-status-row">
+              <span class="dz-beacon-live" style="background: #a3e635; box-shadow: 0 0 10px #a3e635;"></span>
+              <span class="dz-hud-badge" style="color: #a3e635;">DUAL-STATION SYNCHRONY &middot; KANPUR</span>
+              <span class="dz-hud-coord">26.4499° N, 80.3319° E</span>
+            </div>
+            <h3 class="dz-widget-title">Monthly Seasonal Profile: The 5&times; Winter Inversion Spike</h3>
+            <p class="dz-widget-subtitle">Mean PM2.5 and PM10 concentration across calendar months at NSI Kalyanpur and Nehru Nagar.</p>
+          </div>
+        </div>
+
+        <div class="dz-telemetry-hud-strip">
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">MONSOON MINIMUM (AUG)</div>
+            <div class="dz-hud-strip-val text-lime">16.4 &ndash; 22.1 µg/m³</div>
+          </div>
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">WINTER PEAK (NOV)</div>
+            <div class="dz-hud-strip-val text-rose">90.2 &ndash; 94.8 µg/m³</div>
+          </div>
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">WIND SPEED CORRELATION</div>
+            <div class="dz-hud-strip-val text-cyan">r = -0.36 (DISPERSAL)</div>
+          </div>
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">UPWIND HOTSPOT</div>
+            <div class="dz-hud-strip-val text-amber">NORTHERLY WINDS</div>
+          </div>
+        </div>
+
+        <div id="chart-kanpur-monthly" style="width: 100%; min-height: 480px;"></div>
+      </div>
+
+      <!-- Widget 2: Diurnal Hourly Cycle -->
+      <div class="dz-widget-card" id="diurnal" style="margin-top: 3rem;">
+        <div class="dz-widget-header">
+          <div>
+            <h3 class="dz-widget-title">Diurnal Rhythm &amp; Boundary Layer Collapse (24-Hour Cycle)</h3>
+            <p class="dz-widget-subtitle">Hourly mean PM2.5 concentrations revealing the dramatic post-sunset atmospheric collapse peaking at 9&ndash;10 PM IST.</p>
+          </div>
+        </div>
+
+        <div id="chart-kanpur-diurnal" style="width: 100%; min-height: 460px;"></div>
+      </div>
+
+      <!-- Widget 3: Scientific Research Chart Gallery -->
+      <div class="dz-widget-card" id="gallery" style="margin-top: 3rem;">
+        <div class="dz-widget-header">
+          <div>
+            <h3 class="dz-widget-title">Scientific Research Gallery &middot; Publication Visualizations</h3>
+            <p class="dz-widget-subtitle">Diagnostic figures generated during the Kanpur CPCB/UPPCB study in pandas, matplotlib, and seaborn.</p>
+          </div>
+        </div>
+
+        <div class="kanpur-gallery-grid">
+          <div class="kanpur-gallery-card">
+            <img src="assets/kanpur/01_timeseries.png" alt="Multi-year Timeseries of Kanpur PM2.5 and PM10">
+            <div class="kanpur-gallery-label">Fig 1: Multi-Year Timeseries Telemetry</div>
+          </div>
+          <div class="kanpur-gallery-card">
+            <img src="assets/kanpur/02_monthly_seasonal.png" alt="Monthly Seasonality">
+            <div class="kanpur-gallery-label">Fig 2: Monthly Seasonal Progression</div>
+          </div>
+          <div class="kanpur-gallery-card">
+            <img src="assets/kanpur/03_aqi_breakdown.png" alt="AQI Category Breakdown">
+            <div class="kanpur-gallery-label">Fig 3: Air Quality Index Distribution</div>
+          </div>
+          <div class="kanpur-gallery-card">
+            <img src="assets/kanpur/04_diurnal.png" alt="Diurnal 24-Hour Pattern">
+            <div class="kanpur-gallery-label">Fig 4: 24-Hour Diurnal Progression</div>
+          </div>
+          <div class="kanpur-gallery-card">
+            <img src="assets/kanpur/05_correlation_heatmap.png" alt="Correlation Heatmap">
+            <div class="kanpur-gallery-label">Fig 5: Meteorological Correlation Heatmap</div>
+          </div>
+          <div class="kanpur-gallery-card">
+            <img src="assets/kanpur/07_wind_rose.png" alt="Directional Wind Rose">
+            <div class="kanpur-gallery-label">Fig 6: Directional Wind Rose &amp; Dispersion</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. OPEN DATA & CITATIONS
+         ========================================================================= -->
+    <section class="dz-portfolio-section" id="data">
+      <div class="dz-widget-card" style="text-align: center; padding: 4rem 2rem;">
+        <div class="dz-section-tag" style="color: #a3e635; margin-bottom: 1rem;">Reproducibility &middot; Open Science</div>
+        <h2 style="font-size: 2rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">Complete Kanpur Research Data Repository</h2>
+        <p style="color: #94a3b8; max-width: 650px; margin: 0 auto 2.5rem auto; line-height: 1.6;">All raw and processed datasets, analysis scripts, and weather merges are fully open source and reproducible under the MIT License.</p>
+        
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer" class="dz-portfolio-btn highlight" style="font-size: 0.95rem; padding: 0.85rem 1.75rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            <span>Explore Kanpur GitHub Repository &rarr;</span>
+          </a>
+          <a href="delhi.html" class="dz-portfolio-btn primary" style="font-size: 0.95rem; padding: 0.85rem 1.75rem;">
+            <span>Switch to Delhi Investigation &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       7. FOOTER
+       ========================================================================= -->
+  <footer class="dz-footer">
+    <div class="dz-footer-inner">
+      <div class="dz-footer-brand">
+        <h4>SIGNAL EARTH</h4>
+        <p>An open planetary intelligence initiative transforming continuous atmospheric sensor streams, regulatory telemetry, and satellite remote sensing into transparent environmental accountability.</p>
+      </div>
+
+      <div class="dz-footer-links-group">
+        <div class="dz-footer-col">
+          <h5>Airshed Investigations</h5>
+          <ul>
+            <li><a href="delhi.html">Investigation 01: Delhi NCR Airshed</a></li>
+            <li><a href="kanpur.html">Investigation 02: Kanpur Industrial Airshed</a></li>
+            <li><a href="index.html">Signal Earth Institutional Home</a></li>
+          </ul>
+        </div>
+
+        <div class="dz-footer-col">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://www.instagram.com/signalearthhq/" target="_blank" rel="noopener noreferrer">Instagram (@signalearthhq)</a></li>
+            <li><a href="https://www.linkedin.com/company/signalearth/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer">LinkedIn (Signal Earth)</a></li>
+            <li><a href="data/kanpur/daily_aggregated.csv" download="kanpur_daily_aggregated.csv">Daily Data (CSV)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="dz-bottom-bar">
+      <span>&copy; 2026 Signal Earth &middot; Investigation 02: Kanpur (UPPCB / CPCB Telemetry)</span>
+      <span>Conducted by Avnish Singh &middot; Signal Earth</span>
+    </div>
+  </footer>
+
+  <script src="kanpur.js"></script>
+</body>
+</html>
