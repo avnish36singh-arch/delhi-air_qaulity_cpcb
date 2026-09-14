@@ -553,6 +553,55 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   DATA TABLES
+   -------------------------------------------------------------------------- */
+
+.se-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0 2rem 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md, 6px);
+  background: var(--bg-surface);
+}
+
+.se-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+  font-family: var(--font-sans);
+}
+
+.se-table th {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.85rem 1rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
+.se-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #CBD5E1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.se-table tr:last-child td {
+  border-bottom: none;
+}
+
+.se-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* --------------------------------------------------------------------------
    RESPONSIVE ADJUSTMENTS
    -------------------------------------------------------------------------- */
 
@@ -570,3 +619,4 @@ body {
     padding: 4rem 0;
   }
 }
+
