@@ -3,6 +3,17 @@
 **Multi-Year Environmental Dynamics, Chemical Diagnostics, Machine Learning Forecasting, and Source Apportionment (2017–2023)**  
 *Conducted in accordance with Central Pollution Control Board (CPCB), Ministry of Environment, Forest and Climate Change (MoEFCC), Government of India guidelines.*
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![CPCB NAQI 2014](https://img.shields.io/badge/Standard-CPCB%20NAQI%202014-green.svg)](https://cpcb.nic.in)
+[![Signal Earth Platform](https://img.shields.io/badge/Platform-Signal%20Earth-cyan.svg)](web/index.html)
+
+> **Part of the Signal Earth Environmental Research Suite**  
+> • **Delhi NCR Atmospheric Telemetry & NAQI Pipeline** (This Repository)  
+> • **[Kanpur Particulate Dynamics & Station Telemetry](https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur)**  
+> • **[Kanpur Land Surface Temperature (LST) & QGIS Spatial Analysis](https://github.com/avnish36singh-arch/Kanpur-LST-Thermal-Analysis-GIS)**  
+> • **[Signal Earth Public Portal & Methodology Documentation](web/index.html)**
+
 ---
 
 ## Abstract
@@ -39,16 +50,16 @@ flowchart TD
 
 In accordance with CPCB NAQI guidelines, the sub-index $I_p$ for any criteria pollutant concentration $C_p$ is computed via piecewise linear interpolation across predefined regulatory breakpoints:
 
-$$I_p = \frac{I_{hi} - I_{lo}}{B_{hi} - B_{lo}} \times (C_p - B_{lo}) + I_{lo}$$
+$$I_p = \frac{I_{\text{hi}} - I_{\text{lo}}}{B_{\text{hi}} - B_{\text{lo}}} (C_p - B_{\text{lo}}) + I_{\text{lo}}$$
 
 where:
 - $C_p$: Measured 24-hour average concentration of pollutant $p$.
-- $B_{hi}, B_{lo}$: Upper and lower concentration breakpoints for the corresponding category enclosing $C_p$.
-- $I_{hi}, I_{lo}$: Upper and lower index limits for the corresponding category enclosing $C_p$.
+- $B_{\text{hi}}, B_{\text{lo}}$: Upper and lower concentration breakpoints for the corresponding category enclosing $C_p$.
+- $I_{\text{hi}}, I_{\text{lo}}$: Upper and lower index limits for the corresponding category enclosing $C_p$.
 
 ### 2. CPCB Concentration Breakpoint Reference Matrix
 
-| Category | Index Range | $\text{PM}_{2.5}\ (\mu\text{g}/\text{m}^3)$ | $\text{PM}_{10}\ (\mu\text{g}/\text{m}^3)$ | $\text{NO}_2\ (\mu\text{g}/\text{m}^3)$ | $\text{NH}_3\ (\mu\text{g}/\text{m}^3)$ | $\text{SO}_2\ (\mu\text{g}/\text{m}^3)$ | $\text{CO}\ (\text{mg}/\text{m}^3)$ | $\text{O}_3\ (\mu\text{g}/\text{m}^3)$ |
+| Category | Index Range | PM2.5 (µg/m³) | PM10 (µg/m³) | NO2 (µg/m³) | NH3 (µg/m³) | SO2 (µg/m³) | CO (mg/m³) | O3 (µg/m³) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Good** | 0 – 50 | 0 – 30 | 0 – 50 | 0 – 40 | 0 – 200 | 0 – 40 | 0.0 – 1.0 | 0 – 50 |
 | **Satisfactory** | 51 – 100 | 31 – 60 | 51 – 100 | 41 – 80 | 201 – 400 | 41 – 80 | 1.1 – 2.0 | 51 – 100 |
@@ -57,37 +68,40 @@ where:
 | **Very Poor** | 301 – 400 | 121 – 250 | 351 – 430 | 281 – 400 | 1201 – 1800 | 801 – 1600 | 17.1 – 34.0 | 209 – 748 |
 | **Severe** | 401 – 500 | 250+ | 430+ | 400+ | 1800+ | 1600+ | 34.0+ | 748+ |
 
-### 3. Composite AQI Aggregation and Validity Constraints
+### 3. Composite AQI Aggregation and Statutory Validity Rule
 
 Let $\mathcal{P} = \{\text{PM}_{2.5}, \text{PM}_{10}, \text{NO}_2, \text{NH}_3, \text{SO}_2, \text{CO}, \text{O}_3\}$ denote the set of seven regulatory criteria pollutants. For any given monitoring day, let $\mathcal{P}_{\text{valid}} \subseteq \mathcal{P}$ represent the subset of pollutants with valid measured 24-hour average concentrations.
 
-In strict compliance with Central Pollution Control Board (CPCB) guidelines, an official regulatory AQI is computed when at least three criteria pollutants are available with at least one particulate matter species ($\text{PM}_{2.5}$ or $\text{PM}_{10}$):
+The composite daily index is aggregated as the maximum sub-index across all monitored criteria species:
 
-$$\text{AQI}_{\text{Official}} = \begin{cases} 
-\text{True}, & \text{if } |\mathcal{P}_{\text{valid}}| \ge 3 \;\;\text{and}\;\; \left(\text{PM}_{2.5} \in \mathcal{P}_{\text{valid}} \;\lor\; \text{PM}_{10} \in \mathcal{P}_{\text{valid}}\right) \\ 
-\text{False (Indicative Fallback / Incomplete)}, & \text{otherwise} 
-\end{cases}$$
+$$\text{AQI} = \max_{p \in \mathcal{P}_{\text{valid}}} (I_p)$$
 
-$$\text{AQI} = \max_{p \in \mathcal{P}_{\text{valid}}} \left(I_p\right) \quad \text{for } |\mathcal{P}_{\text{valid}}| > 0 \;\land\; \left(\text{PM}_{2.5} \in \mathcal{P}_{\text{valid}} \;\lor\; \text{PM}_{10} \in \mathcal{P}_{\text{valid}}\right)$$
+#### Statutory Validity Conditions
+In strict compliance with Central Pollution Control Board (CPCB) guidelines, an official regulatory AQI is valid if and only if:
+1. **Criteria Quorum**: At least three criteria pollutants possess valid sub-indices ($|\mathcal{P}_{\text{valid}}| \ge 3$).
+2. **Particulate Requirement**: At least one of the monitored species is a particulate matter fraction ($\text{PM}_{2.5} \in \mathcal{P}_{\text{valid}}$ or $\text{PM}_{10} \in \mathcal{P}_{\text{valid}}$).
+3. **Temporal Completeness**: Minimum of 16 valid hourly readings within the 24-hour observation window (≥ 66.7% completeness).
+
+Days failing this statutory threshold are classified as **Indicative / Incomplete AQI** (`AQI_Official = False`), ensuring that uncertified days are never represented as official CPCB observations.
 
 #### Dominant Pollutant Formulation
 The criteria pollutant driving the composite index on that day is designated as the **Dominant Pollutant** ($p^*$):
 
-$$p^* = \operatorname{argmax}_{p \in \mathcal{P}_{\text{valid}}} \left(I_p\right)$$
+$$p^* = \arg\max_{p \in \mathcal{P}_{\text{valid}}} (I_p)$$
 
 In the event of a tie where multiple sub-indices attain the maximum value, the particulate matter fraction takes precedence in accordance with CPCB reporting conventions.
 
-#### Health Category Mapping Function
-The continuous composite $\text{AQI} \in [0, \infty)$ is mapped to the official CPCB health risk classification $\Phi(\text{AQI})$ via the step function:
+#### Health Category Mapping
+The continuous composite index is mapped to the official CPCB health risk classification:
 
-$$\Phi(\text{AQI}) = \begin{cases} 
-\textbf{Good}, & 0 \le \text{AQI} \le 50 \\
-\textbf{Satisfactory}, & 51 \le \text{AQI} \le 100 \\
-\textbf{Moderate}, & 101 \le \text{AQI} \le 200 \\
-\textbf{Poor}, & 201 \le \text{AQI} \le 300 \\
-\textbf{Very Poor}, & 301 \le \text{AQI} \le 400 \\
-\textbf{Severe}, & \text{AQI} \ge 401 
-\end{cases}$$
+| Index Band | Health Category | Color Code | Preventive Advisory |
+| :---: | :---: | :---: | :--- |
+| **0 – 50** | Good | `#10B981` | Minimal impact |
+| **51 – 100** | Satisfactory | `#84CC16` | Minor breathing discomfort to sensitive people |
+| **101 – 200** | Moderate | `#EAB308` | Breathing discomfort to people with lungs, asthma, and heart diseases |
+| **201 – 300** | Poor | `#F97316` | Breathing discomfort to most people on prolonged exposure |
+| **301 – 400** | Very Poor | `#EF4444` | Respiratory illness on prolonged exposure |
+| **401 – 500+** | Severe | `#881337` | Affects healthy people and seriously impacts those with existing diseases |
 
 ---
 
@@ -97,10 +111,10 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 
 | Parameter Classification | Species / Variables | Unit | Environmental and Toxicological Context |
 | :--- | :--- | :---: | :--- |
-| **Criteria Particulates** | $\text{PM}_{2.5}$, $\text{PM}_{10}$ | $\mu\text{g}/\text{m}^3$ | Respirable and thoracic particulate fractions responsible for deep alveolar and systemic morbidity. |
-| **Reactive Gaseous Pollutants** | $\text{NO}, \text{NO}_2, \text{NO}_x, \text{NH}_3, \text{SO}_2, \text{CO}, \text{O}_3$ | $\mu\text{g}/\text{m}^3$, $\text{mg}/\text{m}^3$ | Combustion byproducts, secondary inorganic aerosol precursors, vehicular markers, and photochemical oxidants. |
-| **Volatile Organic Aromatics (BTEX)** | Benzene, Toluene, Xylene, O-Xylene, Ethylbenzene, MP-Xylene | $\mu\text{g}/\text{m}^3$ | Hazardous air pollutants, Group 1 carcinogens (Benzene), and industrial solvent and fuel evaporation tracers. |
-| **Meteorological Dynamics** | $\text{AT}, \text{RH}, \text{WS}, \text{WD}, \text{RF}, \text{TOT\_RF}, \text{SR}, \text{BP}, \text{VWS}$ | $^\circ\text{C}, \%, \text{m}/\text{s}, ^\circ, \text{mm}, \text{W}/\text{m}^2, \text{hPa}$ | Planetary boundary layer governing parameters, ventilation, solar irradiance, barometric stagnation, and wet deposition. |
+| **Criteria Particulates** | `PM2.5`, `PM10` | µg/m³ | Respirable and thoracic particulate fractions responsible for deep alveolar and systemic morbidity. |
+| **Reactive Gaseous Pollutants** | `NO`, `NO2`, `NOx`, `NH3`, `SO2`, `CO`, `O3` | µg/m³, mg/m³ | Combustion byproducts, secondary inorganic aerosol precursors, vehicular markers, and photochemical oxidants. |
+| **Volatile Organic Aromatics (BTEX)** | `Benzene`, `Toluene`, `Xylene`, `O-Xylene`, `Ethylbenzene`, `MP-Xylene` | µg/m³ | Hazardous air pollutants, Group 1 carcinogens (Benzene), and industrial solvent and fuel evaporation tracers. |
+| **Meteorological Dynamics** | `AT`, `RH`, `WS`, `WD`, `RF`, `TOT_RF`, `SR`, `BP`, `VWS` | °C, %, m/s, °, mm, W/m², hPa | Planetary boundary layer governing parameters, ventilation, solar irradiance, barometric stagnation, and wet deposition. |
 
 ---
 
@@ -190,7 +204,7 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 - **Out-of-Time Prospective Validation (Test Year: 2023)**:
   - **Random Forest Regressor**: **$R^2 = 0.769$**, **$\text{RMSE} = 54.98$**, **$\text{MAE} = 39.69$**, Health Category Classification Accuracy = **$62.2\%$**.
   - **Ridge Linear Baseline**: **$R^2 = 0.764$**, **$\text{RMSE} = 55.61$**, **$\text{MAE} = 42.40$**, Health Category Classification Accuracy = **$60.8\%$**.
-- **Feature Importance (Gini Impurity Reduction)**: Current-day AQI ($\text{AQI}_t$) and ground-level fine particulates ($\text{PM}_{2.5\_t}$) represent the strongest predictors, followed by 3-day rolling AQI momentum and Ambient Temperature ($\text{AT}_t$), confirming high atmospheric inertia in the airshed.
+- **Feature Importance (Gini Impurity Reduction)**: Current-day AQI ($\text{AQI}_t$) and ground-level fine particulates ($\text{PM}_{2.5}(t)$) represent the strongest predictors, followed by 3-day rolling AQI momentum and Ambient Temperature ($\text{AT}_t$), confirming high atmospheric inertia in the airshed.
 
 > **Methodological Disclosure & Gap-Handling Note**: Feature construction uses `.interpolate(method="linear", limit=2).bfill().ffill()`; small gaps ($\le 2$ days) are linearly interpolated, while any longer gaps within continuous monitoring years are forward/back-filled. Target is $t+1$ (next-day AQI) trained strictly on years $< 2023$ and evaluated on 2023 out-of-time test set with zero temporal leakage.
 
