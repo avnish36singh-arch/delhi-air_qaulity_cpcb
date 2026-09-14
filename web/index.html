@@ -3,431 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signal Earth — Making Environmental Change Visible</title>
-  <meta name="description" content="Signal Earth uncovers environmental change through maps, satellite imagery, official regulatory data, and scientific research. See change. Understand Earth.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+  <title>Signal Earth — Independent Environmental Data &amp; Analysis</title>
+  <meta name="description" content="Signal Earth publishes independent analysis of publicly available environmental monitoring data — CPCB, UPPCB, and open satellite records — with full source code and citations.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- =========================================================================
-       1. NAVIGATION BAR
-       ========================================================================= -->
-  <header class="dz-navbar">
-    <a href="#" class="dz-logo">
-      <div class="dz-logo-mark">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-gold);"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-        <div style="display: flex; flex-direction: column; line-height: 1.1;">
-          <span style="font-weight: 900; letter-spacing: 0.12em;">SIGNAL EARTH</span>
-          <span style="font-size: 0.58rem; letter-spacing: 0.18em; color: var(--text-muted);">SEE CHANGE &middot; UNDERSTAND EARTH</span>
-        </div>
-      </div>
+  <!-- Navigation -->
+  <nav class="se-nav">
+    <a href="index.html" class="se-brand">
+      <span class="se-brand-name">SIGNAL EARTH</span>
+      <span class="se-brand-sub">Independent Environmental Analysis</span>
     </a>
 
-    <ul class="dz-nav-center">
-      <li><a href="#overview" class="active">Overview</a></li>
-      <li><a href="#investigations">Investigations</a></li>
-      <li><a href="#dispatches">Satellite Stories</a></li>
-      <li><a href="#reports">Simplified Reports</a></li>
-      <li><a href="#record">The Record</a></li>
-      <li><a href="#coverage">Scope</a></li>
-      <li><a href="#principles">Principles</a></li>
+    <ul class="se-nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="investigations/kanpur.html">Kanpur</a></li>
+      <li><a href="investigations/delhi.html">Delhi</a></li>
+      <li><a href="dispatches.html">Dispatches</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
 
-    <div class="dz-nav-social">
-      <a href="https://www.instagram.com/signalearthhq/" target="_blank" rel="noopener noreferrer" class="social-pill-link">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-        <span>Instagram</span>
-      </a>
-      <a href="https://www.linkedin.com/company/signalearth/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" class="social-pill-link">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-        <span>LinkedIn</span>
-      </a>
+    <div class="se-nav-social">
+      <a href="https://www.instagram.com/signalearthhq/" target="_blank" rel="noopener noreferrer" class="se-social-link">Instagram</a>
+      <a href="https://www.linkedin.com/company/signalearth/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" class="se-social-link">LinkedIn</a>
+      <a href="https://github.com/avnish36singh-arch" target="_blank" rel="noopener noreferrer" class="se-social-link">GitHub</a>
     </div>
-  </header>
+  </nav>
 
   <main>
-    <!-- =========================================================================
-         2. HERO SECTION
-         ========================================================================= -->
-    <section class="dz-hero-section" id="overview">
-      <div class="dz-hero-canvas">
-        <div class="dz-hero-focal-wrap">
-          <img src="assets/hero_satellite_earth.jpg" alt="Atmospheric Remote Sensing over the Indo-Gangetic Basin" class="dz-hero-focal-img">
-        </div>
+    <!-- Hero Section -->
+    <header class="se-hero se-container">
+      <span class="section-kicker">Observational Telemetry</span>
+      <h1 class="se-hero-lede">Continuous ambient air-quality telemetry across North India.</h1>
+      <p class="se-hero-dek">Signal Earth publishes independent analysis of publicly available environmental monitoring data — CPCB, UPPCB, and open satellite records — with full source code and citations.</p>
 
-        <div class="dz-hero-editorial-panel">
-          <div class="dz-section-tag">Atmospheric &amp; Environmental Intelligence</div>
-          <h1 class="dz-hero-headline">Making environmental change visible through maps, data, and science.</h1>
-          <p class="dz-hero-paragraph">Signal Earth uncovers environmental change through maps, satellite imagery, official regulatory data, and scientific research—transforming complex planetary evidence into insights anyone can understand.</p>
-        </div>
+      <div class="se-hero-media">
+        <img src="assets/himalaya_haze_panorama.jpg" alt="NASA satellite panorama of seasonal atmospheric haze along the Indo-Gangetic Basin" class="se-hero-img">
+        <span class="se-media-credit">Imagery: NASA Earth Observatory / MODIS Rapid Response System. Nocturnal boundary layer over the Indo-Gangetic plain.</span>
       </div>
+    </header>
 
-      <div class="dz-vertical-guide-line"></div>
-    </section>
+    <!-- Investigations Section -->
+    <section class="se-section se-container">
+      <span class="section-kicker">Active Investigations</span>
+      <h2 class="editorial-headline" style="font-size: 2rem; margin-bottom: 0.5rem;">Station-Level Air Quality Analyses</h2>
+      <p style="color: var(--text-secondary); max-width: 680px;">Multi-year evaluations of particulate dynamics, meteorological correlation, and regulatory compliance derived directly from central and state continuous monitoring stations.</p>
 
-    <!-- =========================================================================
-         3. GIANT STAT
-         ========================================================================= -->
-    <section class="dz-giant-stat-section">
-      <div class="dz-giant-stat-text">SIGNAL EARTH</div>
-      <div class="dz-giant-tagline">No opinions &middot; No exaggeration &middot; Just a clearer view of a changing planet</div>
-    </section>
+      <div class="se-investigations-grid">
+        <!-- Kanpur Card -->
+        <article class="se-card">
+          <div class="se-card-status">INVESTIGATION 01 · KANPUR, UP</div>
+          <h3 class="se-card-title"><a href="investigations/kanpur.html">Spatial Particulate Dynamics &amp; Seasonal Multipliers in Kanpur</a></h3>
+          <p class="se-card-dek">A comparative analysis of hourly PM2.5 and PM10 telemetry across NSI Kalyanpur and Nehru Nagar monitoring stations using CPCB/UPPCB records from OpenAQ, examining the five-fold winter surge, nocturnal boundary layer collapse, and weather correlations.</p>
+          <div class="se-card-meta">
+            <span>Stations: NSI Kalyanpur, Nehru Nagar</span>
+            <span>Agency: UPPCB / CPCB via OpenAQ</span>
+          </div>
+          <div class="se-card-links">
+            <a href="investigations/kanpur.html" class="se-link">Read the analysis &rarr;</a>
+            <a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer" class="se-link se-link-secondary">View source code &rarr;</a>
+          </div>
+        </article>
 
-    <!-- =========================================================================
-         4. FEATURED AIRSHED INVESTIGATIONS (The 2 Projects)
-         ========================================================================= -->
-    <section class="dz-portfolio-section" id="investigations">
-      <div class="dz-section-tag" style="text-align: center; margin-bottom: 1.25rem;">Signal Earth Observatories &middot; Active Airshed Portfolio</div>
-      <h2 class="dz-portfolio-headline">Featured Airshed Investigations</h2>
-      <p class="dz-portfolio-sub">Explore our dedicated interactive investigation interfaces. Each investigation features continuous station telemetry, satellite remote sensing, and reproducible scientific workflows.</p>
-
-      <div class="dz-portfolio-grid">
-        <!-- Investigation 01: Delhi NCR -->
-        <div class="dz-portfolio-card active-card">
-          <div class="dz-portfolio-badge live">
-            <span class="dz-beacon-live"></span>
-            <span>INVESTIGATION 01 &middot; FLAGSHIP TELEMETRY &amp; AI</span>
+        <!-- Delhi Card -->
+        <article class="se-card">
+          <div class="se-card-status">INVESTIGATION 02 · DELHI NCR</div>
+          <h3 class="se-card-title"><a href="investigations/delhi.html">Multi-Year Regulatory NAQI Computation &amp; Inversion Dynamics at Alipur</a></h3>
+          <p class="se-card-dek">Evaluation of continuous ambient telemetry at Delhi's northern entry corridor across 2017–2023, computing regulatory CPCB National Air Quality Sub-Indices from raw pollutant parameters and documenting post-monsoon entrapment patterns.</p>
+          <div class="se-card-meta">
+            <span>Station: Alipur (DPCC / CPCB)</span>
+            <span>Agency: Central Pollution Control Board</span>
           </div>
-          <div class="dz-portfolio-location">Delhi NCR &middot; Northern Corridor (Alipur)</div>
-          <h3 class="dz-portfolio-title">Continuous Multi-Year CPCB Telemetry &amp; Predictive Machine Learning</h3>
-          <p class="dz-portfolio-desc">Dissecting seven years of continuous ambient telemetry at Delhi's northern gateway. Analyzes winter radiation inversions, transboundary agricultural smoke plumes, and prospective 24-hour Random Forest predictive AI (R&sup2; = 0.77).</p>
-          <div class="dz-portfolio-meta">
-            <div class="dz-meta-pill">Station: CPCB Alipur-01</div>
-            <div class="dz-meta-pill">Peak PM2.5: 529 µg/m³</div>
-            <div class="dz-meta-pill">61 Lag &amp; Weather Features</div>
-            <div class="dz-meta-pill">Period: 2018–2023</div>
+          <div class="se-card-links">
+            <a href="investigations/delhi.html" class="se-link">Read the analysis &rarr;</a>
+            <a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer" class="se-link se-link-secondary">View source code &rarr;</a>
           </div>
-          <div class="dz-portfolio-actions">
-            <a href="delhi.html" class="dz-portfolio-btn primary" style="font-size: 0.9rem; padding: 0.8rem 1.4rem;">
-              <span>Open Delhi Investigation Interface &rarr;</span>
-            </a>
-            <a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer" class="dz-portfolio-btn secondary">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              <span>GitHub Repo</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Investigation 02: Kanpur -->
-        <div class="dz-portfolio-card">
-          <div class="dz-portfolio-badge published">
-            <span class="dz-badge-dot"></span>
-            <span>INVESTIGATION 02 &middot; DUAL-STATION SPATIAL STUDY</span>
-          </div>
-          <div class="dz-portfolio-location">Kanpur &middot; Industrial Gangetic Airshed</div>
-          <h3 class="dz-portfolio-title">Spatial Particulate Trends, Seasonal Spikes &amp; Weather Correlation</h3>
-          <p class="dz-portfolio-desc">Dual-station investigation across NSI Kalyanpur and Nehru Nagar using continuous CPCB/UPPCB telemetry via OpenAQ. Dissects a 5&times; November winter surge over August monsoon baseline, nocturnal boundary layer collapse (9–10 PM IST peak), and northerly upwind advection.</p>
-          <div class="dz-portfolio-meta">
-            <div class="dz-meta-pill">Stations: NSI Kalyanpur &amp; Nehru Nagar</div>
-            <div class="dz-meta-pill">5&times; November Winter Surge</div>
-            <div class="dz-meta-pill">9–10 PM Boundary Layer Collapse</div>
-            <div class="dz-meta-pill">Source: CPCB / UPPCB / OpenAQ</div>
-          </div>
-          <div class="dz-portfolio-actions">
-            <a href="kanpur.html" class="dz-portfolio-btn highlight" style="font-size: 0.9rem; padding: 0.8rem 1.4rem;">
-              <span>Open Kanpur Investigation Interface &rarr;</span>
-            </a>
-            <a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer" class="dz-portfolio-btn secondary">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              <span>GitHub Repo</span>
-            </a>
-          </div>
-        </div>
+        </article>
       </div>
     </section>
 
-    <!-- =========================================================================
-         5. SATELLITE BEFORE & AFTER DISPATCHES (Planetary Change Feed)
-         ========================================================================= -->
-    <section class="dz-portfolio-section" id="dispatches">
-      <div class="dz-section-tag" style="text-align: center; margin-bottom: 1.25rem;">Remote Sensing Dispatches &middot; Visual Evidence</div>
-      <h2 class="dz-portfolio-headline">Satellite Before &amp; After Stories</h2>
-      <p class="dz-portfolio-sub">Tracking physical planetary transformation over multi-decadal satellite observation windows: glaciers retreating, coastlines shifting, and wetlands evaporating.</p>
-
-      <div class="dz-portfolio-grid">
-        <!-- Story 01: Glacial Retreat -->
-        <div class="dz-dispatch-card" data-category="satellite">
-          <div class="dz-dispatch-header">
-            <span class="dz-dispatch-tag" style="color: #06b6d4;">CRYOSPHERE &middot; HIMALAYAS</span>
-            <span class="dz-dispatch-meta">1990 &rarr; 2024 &middot; LANDSAT 5 / SENTINEL-2</span>
-          </div>
-          <h3 class="dz-dispatch-title">Terminal Moraine Recession &amp; Proglacial Lake Expansion</h3>
-          <p class="dz-dispatch-desc">Comparative multi-spectral analysis of the Gangotri and Chhota Shigri glacial tongues. Multi-decadal satellite imaging reveals an average snout recession of 23.4 meters per year, with proglacial meltwater volume increasing by 310%.</p>
-          <div class="dz-dispatch-delta">
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-cyan">-23.4 m/yr</span>
-              <span class="dz-delta-lbl">GLACIER RECESSION</span>
-            </div>
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-amber">+310%</span>
-              <span class="dz-delta-lbl">MELT LAKE AREA</span>
-            </div>
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-lime">34 YEARS</span>
-              <span class="dz-delta-lbl">OBSERVATION BASE</span>
-            </div>
-          </div>
+    <!-- Latest Dispatch -->
+    <section class="se-section se-container">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem;">
+        <div>
+          <span class="section-kicker">External Research</span>
+          <h2 class="editorial-headline" style="font-size: 2rem;">Latest Dispatch</h2>
         </div>
-
-        <!-- Story 02: Coastal Erosion -->
-        <div class="dz-dispatch-card" data-category="satellite">
-          <div class="dz-dispatch-header">
-            <span class="dz-dispatch-tag" style="color: #10b981;">COASTAL MORPHOLOGY &middot; BAY OF BENGAL</span>
-            <span class="dz-dispatch-meta">2000 &rarr; 2024 &middot; USGS LANDSAT 7 / 9</span>
-          </div>
-          <h3 class="dz-dispatch-title">Sundarbans Mangrove Fringe Retreat &amp; Island Submergence</h3>
-          <p class="dz-dispatch-desc">Spatial time series mapping of the southern deltaic coastline. Severe tidal scour and relative sea level displacement resulted in 142 km² of net coastal mangrove buffer loss across low-lying islands over 24 years.</p>
-          <div class="dz-dispatch-delta">
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-rose">-142 km²</span>
-              <span class="dz-delta-lbl">MANGROVE SHORELINE</span>
-            </div>
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-amber">+4.1 mm/yr</span>
-              <span class="dz-delta-lbl">RELATIVE SEA RISE</span>
-            </div>
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-cyan">USGS SATELLITE</span>
-              <span class="dz-delta-lbl">DATA SENSOR</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Story 03: Wetland Desiccation -->
-        <div class="dz-dispatch-card" data-category="satellite">
-          <div class="dz-dispatch-header">
-            <span class="dz-dispatch-tag" style="color: #f59e0b;">HYDROLOGICAL LOSS &middot; RAJASTHAN</span>
-            <span class="dz-dispatch-meta">2010 &rarr; 2024 &middot; MODIS TERRA / AQUA</span>
-          </div>
-          <h3 class="dz-dispatch-title">Sambhar Salt Lake: 42% Surface Water Depletion</h3>
-          <p class="dz-dispatch-desc">Normalized Difference Water Index (NDWI) temporal tracking across India's largest inland saline wetland. Intensified subterranean brine extraction and catchment damming shrank the perennial surface water perimeter by 42%.</p>
-          <div class="dz-dispatch-delta">
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-rose">-42%</span>
-              <span class="dz-delta-lbl">SURFACE WATER LOSS</span>
-            </div>
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-amber">14 YEARS</span>
-              <span class="dz-delta-lbl">MONITORED HORIZON</span>
-            </div>
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-lime">NDWI MULTI-BAND</span>
-              <span class="dz-delta-lbl">INDEX METHOD</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Story 04: Urban Thermal Heat Island -->
-        <div class="dz-dispatch-card" data-category="satellite">
-          <div class="dz-dispatch-header">
-            <span class="dz-dispatch-tag" style="color: #ec4899;">URBAN EXPANSION &middot; NCR REGION</span>
-            <span class="dz-dispatch-meta">2014 &rarr; 2024 &middot; LANDSAT 8 TIRS</span>
-          </div>
-          <h3 class="dz-dispatch-title">Aravalli Buffer Loss &amp; +4.2°C Urban Surface Heat Island</h3>
-          <p class="dz-dispatch-desc">Thermal infrared remote sensing documenting the conversion of peri-urban agricultural vegetation and scrubland into impervious concrete sprawl across Gurugram and Faridabad, intensifying ground-level nocturnal heat retention.</p>
-          <div class="dz-dispatch-delta">
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-rose">+4.2°C</span>
-              <span class="dz-delta-lbl">SURFACE TEMP DELTA</span>
-            </div>
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-amber">-28.6%</span>
-              <span class="dz-delta-lbl">VEGETATION BUFFER</span>
-            </div>
-            <div class="dz-delta-stat">
-              <span class="dz-delta-val text-cyan">TIRS THERMAL</span>
-              <span class="dz-delta-lbl">SENSOR PIPELINE</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         6. SIMPLIFIED GLOBAL ENVIRONMENTAL REPORTS
-         ========================================================================= -->
-    <section class="dz-portfolio-section" id="reports">
-      <div class="dz-section-tag" style="text-align: center; margin-bottom: 1.25rem;">Scientific Synthesis &middot; Global Reports Simplified</div>
-      <h2 class="dz-portfolio-headline">Environmental Reports Simplified</h2>
-      <p class="dz-portfolio-sub">We translate dense multi-hundred-page international assessments—IPCC, UNEP, World Bank, and national ministries—into accessible, visual intelligence.</p>
-
-      <div class="dz-report-grid">
-        <!-- Report 01: IPCC AR6 -->
-        <div class="dz-widget-card" style="margin-bottom: 0;">
-          <div class="dz-report-badge">IPCC AR6 SYNTHESIS &middot; SOUTH ASIA</div>
-          <h3 style="font-size: 1.3rem; font-weight: 800; color: #ffffff; margin: 0.85rem 0 0.75rem 0;">Aerosol Forcing &amp; Monsoon Disruption</h3>
-          <p style="font-size: 0.92rem; color: #94a3b8; line-height: 1.65; margin-bottom: 1.75rem;">The IPCC Sixth Assessment Report highlights that high particulate concentrations over the Indo-Gangetic Plain generate negative radiative forcing, dampening sea-surface thermal contrast and destabilizing the summer monsoon rainband.</p>
-          <div class="dz-portfolio-meta" style="margin-bottom: 0;">
-            <div class="dz-meta-pill">Key Finding: Solar Dimming Effect</div>
-            <div class="dz-meta-pill">Monsoon Shift: +22% Extremes</div>
-            <div class="dz-meta-pill">Source: IPCC WGI SPM</div>
-          </div>
-        </div>
-
-        <!-- Report 02: UNEP Emissions Gap -->
-        <div class="dz-widget-card" style="margin-bottom: 0;">
-          <div class="dz-report-badge" style="color: #a3e635; border-color: rgba(163, 230, 53, 0.3);">UNEP POLICY BRIEF &middot; AIRSHED LEVEL</div>
-          <h3 style="font-size: 1.3rem; font-weight: 800; color: #ffffff; margin: 0.85rem 0 0.75rem 0;">Transboundary Inversion Capping</h3>
-          <p style="font-size: 0.92rem; color: #94a3b8; line-height: 1.65; margin-bottom: 1.75rem;">UNEP’s regional assessment demonstrates that municipal interventions (odd-even road rationing, localized water sprinkling) mitigate less than 8% of peak particulate mass. Coordinated regional emission caps across state borders are the only viable pathway.</p>
-          <div class="dz-portfolio-meta" style="margin-bottom: 0;">
-            <div class="dz-meta-pill">Municipal Impact: &lt;8% Reduction</div>
-            <div class="dz-meta-pill">Regional Origin: 72% Transboundary</div>
-            <div class="dz-meta-pill">Source: UNEP Regional Brief</div>
-          </div>
-        </div>
-
-        <!-- Report 03: World Bank Airshed -->
-        <div class="dz-widget-card" style="margin-bottom: 0;">
-          <div class="dz-report-badge" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">WORLD BANK &middot; SOUTH ASIA ROADMAP</div>
-          <h3 style="font-size: 1.3rem; font-weight: 800; color: #ffffff; margin: 0.85rem 0 0.75rem 0;">The $2.6 Billion Breathing Space Framework</h3>
-          <p style="font-size: 0.92rem; color: #94a3b8; line-height: 1.65; margin-bottom: 1.75rem;">The World Bank’s comprehensive airshed modeling establishes that unified airshed-wide investments (clean cooking, industrial scrubbers, e-transit) save $2.6B annually in avoided public-health hospitalizations across the Gangetic basin.</p>
-          <div class="dz-portfolio-meta" style="margin-bottom: 0;">
-            <div class="dz-meta-pill">Public Health Benefit: $2.6B/yr</div>
-            <div class="dz-meta-pill">Lives Saved: 750,000/decade</div>
-            <div class="dz-meta-pill">Source: World Bank Report</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         7. THE RECORD INTO VIEW
-         ========================================================================= -->
-    <section class="dz-narrative-section" id="record">
-      <div class="dz-narrative-body">
-        <div class="dz-section-tag">Our Mandate</div>
-        <h2 class="dz-narrative-title">Bringing the Planetary Record into View</h2>
-        <p>Most environmental change happens too slowly to notice day to day. A glacier retreats a few meters a year. A coastline shifts. A lake shrinks. No single moment reveals it, but the record is there, captured year after year by satellites, sensors, and researchers.</p>
-        <p><strong>Signal Earth exists to bring that record into view.</strong> We publish visual, evidence-based breakdowns of environmental change using GIS spatial analysis, satellite remote sensing (NASA, USGS, Landsat, MODIS, Copernicus Sentinel), official government regulatory sensors, and transparent data visualization.</p>
+        <a href="dispatches.html" class="se-link">View all dispatches &rarr;</a>
       </div>
 
-      <div class="dz-photo-accent-wrapper">
-        <img src="assets/delhi_iss_night.jpg" alt="NASA Earth Observation of the Himalayan Frontier" class="dz-story-photo">
-        <div class="dz-accent-block">
-          <span class="dz-accent-chip">SIGNAL EARTH</span>
-          <span class="dz-accent-code">EMPIRICAL INTEL</span>
-          <span class="dz-accent-elev">MAPS &middot; DATA &middot; SCIENCE</span>
+      <article class="se-card" style="padding: 2.5rem;">
+        <span class="section-kicker" style="color: var(--data-cyan);">DISPATCH · MARCH 2024</span>
+        <h3 class="se-card-title" style="font-size: 1.6rem; margin-bottom: 0.75rem;">
+          <a href="dispatches.html#dispatch-1">CPCB National Clean Air Programme (NCAP): Regional Airshed Modeling Requirements</a>
+        </h3>
+        <p class="se-card-dek" style="margin-bottom: 1.25rem;">
+          Independent assessment by atmospheric research consortiums evaluates NCAP target attainment across 131 non-attainment cities. Analysis demonstrates that municipal boundaries cover less than 15% of the total airshed area responsible for ground-level particulate mass in the Indo-Gangetic basin during winter inversions.
+        </p>
+        <div class="se-dispatch-source">
+          Source: <a href="https://cpcb.nic.in" target="_blank" rel="noopener noreferrer">Central Pollution Control Board / NCAP Review Portal (2024)</a>
         </div>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         8. PANORAMIC BREAK
-         ========================================================================= -->
-    <section class="dz-panorama-section">
-      <div class="dz-panorama-frame">
-        <img src="assets/himalaya_haze_panorama.jpg" alt="NASA Earth Observatory Satellite Panorama">
-      </div>
-
-      <div class="dz-panorama-editorial">
-        <h2 class="dz-panorama-headline">No opinions. No exaggeration.</h2>
-        <div class="dz-panorama-text">
-          <p>Environmental challenges cannot be understood through speculation or hyperbole. We verify before publishing, cite our primary sources, and strictly separate empirical evidence from scientific interpretation.</p>
-          <p style="margin-top: 1rem;">From transboundary particulate entrapment south of the Himalayas to industrial river basin dynamics, our work highlights both acute environmental challenges and the systemic recoveries the data reveals.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         9. WHAT WE COVER (4 Pillars)
-         ========================================================================= -->
-    <section class="dz-data-section" id="coverage">
-      <div class="dz-section-tag" style="text-align: center; margin-bottom: 1.25rem;">Core Coverage &middot; Research Scope</div>
-      <h2 style="font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; text-align: center; color: #ffffff; letter-spacing: -0.02em; margin-bottom: 3.5rem;">What We Cover</h2>
-
-      <div class="kanpur-gallery-grid">
-        <div class="dz-widget-card" style="margin-bottom: 0;">
-          <div style="font-family: ui-monospace, monospace; font-size: 0.75rem; font-weight: 800; color: #06b6d4; margin-bottom: 0.75rem;">01 / REMOTE SENSING</div>
-          <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 0.75rem;">Satellite Before &amp; After Stories</h3>
-          <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.65;">Tracking planetary physical transformation over multi-decadal observation windows: deforestation, coastal erosion, rapid urban expansion, and wetland depletion.</p>
-        </div>
-
-        <div class="dz-widget-card" style="margin-bottom: 0;">
-          <div style="font-family: ui-monospace, monospace; font-size: 0.75rem; font-weight: 800; color: #a3e635; margin-bottom: 0.75rem;">02 / REGULATORY DATA</div>
-          <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 0.75rem;">Environmental Reports Simplified</h3>
-          <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.65;">Synthesizing complex international scientific findings—IPCC, UNEP, World Bank, and national environmental databases—into clear, interactive public telemetry.</p>
-        </div>
-
-        <div class="dz-widget-card" style="margin-bottom: 0;">
-          <div style="font-family: ui-monospace, monospace; font-size: 0.75rem; font-weight: 800; color: var(--accent-gold); margin-bottom: 0.75rem;">03 / CASE STUDIES</div>
-          <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 0.75rem;">Full In-Depth Airshed Analyses</h3>
-          <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.65;">Granular forensic investigations into specific atmospheric and ecological phenomena, connecting upstream causation to downstream population exposure.</p>
-        </div>
-
-        <div class="dz-widget-card" style="margin-bottom: 0;">
-          <div style="font-family: ui-monospace, monospace; font-size: 0.75rem; font-weight: 800; color: #ec4899; margin-bottom: 0.75rem;">04 / GEOSPATIAL SCIENCE</div>
-          <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 0.75rem;">GIS &amp; Spatial Telemetry</h3>
-          <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.65;">Explaining how advanced spatial analysis, geographic information systems, and sensor meshes reveal systemic patterns invisible to single-station monitoring.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         8. PRINCIPLES & WHO THIS IS FOR
-         ========================================================================= -->
-    <section class="dz-portfolio-section" id="principles" style="margin-top: 4rem;">
-      <div class="dz-widget-card" style="padding: 4rem 3rem;">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;" class="grid-dual">
-          <div>
-            <div class="dz-section-tag" style="color: var(--accent-gold); margin-bottom: 1rem;">Standards &amp; Principles</div>
-            <h2 style="font-size: 2.2rem; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 1.5rem;">The work is the product, not who's behind it.</h2>
-            <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 1.25rem;">Built for anyone curious about the changing planet, and detailed enough to hold up for GIS professionals, urban planners, environmental researchers, and policy audiences.</p>
-            <p style="color: #94a3b8; line-height: 1.7;">We verify before publishing, cite our primary sources, and provide fully reproducible open-source analytical code for every project.</p>
-          </div>
-
-          <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 2rem;">
-            <div style="font-family: ui-monospace, monospace; font-size: 0.8rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem; letter-spacing: 0.1em;">SIGNAL EARTH OPERATING CODE</div>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.88rem; color: #cbd5e1;">
-              <li style="display: flex; align-items: center; gap: 0.75rem;"><span style="color: #10b981;">&#10003;</span> Ground-truth regulatory telemetry (CPCB, UPPCB, DPCC)</li>
-              <li style="display: flex; align-items: center; gap: 0.75rem;"><span style="color: #10b981;">&#10003;</span> NASA &amp; USGS remote sensing validation</li>
-              <li style="display: flex; align-items: center; gap: 0.75rem;"><span style="color: #10b981;">&#10003;</span> Open code repositories on GitHub</li>
-              <li style="display: flex; align-items: center; gap: 0.75rem;"><span style="color: #10b981;">&#10003;</span> Zero editorial speculation or hyperbole</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      </article>
     </section>
   </main>
 
-  <!-- =========================================================================
-       9. INSTITUTIONAL FOOTER
-       ========================================================================= -->
-  <footer class="dz-footer">
-    <div class="dz-footer-inner">
-      <div class="dz-footer-brand">
-        <h4>SIGNAL EARTH</h4>
-        <p>Making environmental change visible through maps, data, and science. An independent planetary observation initiative uncovering multi-year atmospheric sensor streams and remote sensing.</p>
-      </div>
+  <!-- Footer -->
+  <footer class="se-footer">
+    <div class="se-container">
+      <div class="se-footer-inner">
+        <div style="max-width: 360px;">
+          <div style="font-weight: 700; color: #FFFFFF; letter-spacing: 0.1em; margin-bottom: 0.6rem;">SIGNAL EARTH</div>
+          <p style="line-height: 1.6;">Independent analysis of publicly available environmental monitoring data — CPCB, UPPCB, and open satellite records — with full source code and citations.</p>
+        </div>
 
-      <div class="dz-footer-links-group">
-        <div class="dz-footer-col">
+        <div class="se-footer-col">
           <h5>Investigations</h5>
           <ul>
-            <li><a href="delhi.html">Investigation 01: Delhi NCR Airshed</a></li>
-            <li><a href="kanpur.html">Investigation 02: Kanpur Industrial Airshed</a></li>
-            <li><a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer">Delhi Project Code (GitHub)</a></li>
-            <li><a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer">Kanpur Project Code (GitHub)</a></li>
+            <li><a href="investigations/kanpur.html">Kanpur Air Quality</a></li>
+            <li><a href="investigations/delhi.html">Delhi Air Quality</a></li>
+            <li><a href="dispatches.html">Research Dispatches</a></li>
           </ul>
         </div>
 
-        <div class="dz-footer-col">
-          <h5>Connect</h5>
+        <div class="se-footer-col">
+          <h5>Source Code</h5>
+          <ul>
+            <li><a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer">Kanpur Repo (GitHub)</a></li>
+            <li><a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer">Delhi Repo (GitHub)</a></li>
+            <li><a href="about.html">Methodology &amp; Standards</a></li>
+          </ul>
+        </div>
+
+        <div class="se-footer-col">
+          <h5>Contact &amp; Profiles</h5>
           <ul>
             <li><a href="https://www.instagram.com/signalearthhq/" target="_blank" rel="noopener noreferrer">Instagram (@signalearthhq)</a></li>
             <li><a href="https://www.linkedin.com/company/signalearth/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer">LinkedIn (Signal Earth)</a></li>
-            <li><a href="data/cleaned.json" download="delhi_clean_data.json">Delhi Telemetry Data (JSON)</a></li>
-            <li><a href="data/kanpur/daily_aggregated.csv" download="kanpur_daily_data.csv">Kanpur Telemetry Data (CSV)</a></li>
+            <li><a href="contact.html">Contact Information</a></li>
           </ul>
         </div>
       </div>
-    </div>
 
-    <div class="dz-bottom-bar">
-      <span>&copy; 2026 Signal Earth &middot; Making environmental change visible through maps, data, and science.</span>
-      <span>Empirical Environmental Telemetry &middot; Open Research</span>
+      <div class="se-footer-bottom">
+        <span>Signal Earth &middot; Maintained by Avnish Singh &middot; HBTU Kanpur</span>
+        <span>Data: CPCB, UPPCB, DPCC &middot; MIT License</span>
+      </div>
     </div>
   </footer>
 
