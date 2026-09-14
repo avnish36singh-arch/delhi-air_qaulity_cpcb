@@ -57,16 +57,35 @@ where:
 | **Very Poor** | 301 – 400 | 121 – 250 | 351 – 430 | 281 – 400 | 1201 – 1800 | 801 – 1600 | 17.1 – 34.0 | 209 – 748 |
 | **Severe** | 401 – 500 | 250+ | 430+ | 400+ | 1800+ | 1600+ | 34.0+ | 748+ |
 
-### 3. Composite AQI and Validity Constraints
+### 3. Composite AQI Aggregation and Validity Constraints
 
-The overall daily composite index is defined by the maximum individual criteria pollutant sub-index:
+Let $\mathcal{P} = \{\text{PM}_{2.5}, \text{PM}_{10}, \text{NO}_2, \text{NH}_3, \text{SO}_2, \text{CO}, \text{O}_3\}$ denote the set of seven regulatory criteria pollutants. For any given monitoring day, let $\mathcal{P}_{\text{valid}} \subseteq \mathcal{P}$ represent the subset of pollutants with valid measured 24-hour average concentrations.
 
-$$\text{AQI} = \max\left(I_{\text{PM}2.5}, I_{\text{PM}10}, I_{\text{NO}2}, I_{\text{NH}3}, I_{\text{SO}2}, I_{\text{CO}}, I_{\text{O}3}\right)$$
+The composite daily National Air Quality Index ($\text{AQI}$) is formally defined as:
 
-Subject to CPCB validation criteria:
-1. Valid index calculation mandates monitoring of at least three criteria pollutants ($n \ge 3$).
-2. At least one of the monitored species must be a particulate fraction ($\text{PM}_{2.5}$ or $\text{PM}_{10}$).
-3. The pollutant satisfying $\operatorname{argmax}_p (I_p)$ is designated as the **Dominant Pollutant**.
+$$\text{AQI} = \begin{cases} 
+\displaystyle \max_{p \in \mathcal{P}_{\text{valid}}} \left(I_p\right), & \text{if } |\mathcal{P}_{\text{valid}}| \ge 3 \;\;\text{and}\;\; \left(\text{PM}_{2.5} \in \mathcal{P}_{\text{valid}} \;\lor\; \text{PM}_{10} \in \mathcal{P}_{\text{valid}}\right) \\ 
+\text{NaN (Insufficient Data)}, & \text{otherwise} 
+\end{cases}$$
+
+#### Dominant Pollutant Formulation
+The criteria pollutant driving the composite index on that day is designated as the **Dominant Pollutant** ($p^*$):
+
+$$p^* = \operatorname{argmax}_{p \in \mathcal{P}_{\text{valid}}} \left(I_p\right)$$
+
+In the event of a tie where multiple sub-indices attain the maximum value, the particulate matter fraction takes precedence in accordance with CPCB reporting conventions.
+
+#### Health Category Mapping Function
+The continuous composite $\text{AQI} \in [0, \infty)$ is mapped to the official CPCB health risk classification $\Phi(\text{AQI})$ via the step function:
+
+$$\Phi(\text{AQI}) = \begin{cases} 
+\textbf{Good}, & 0 \le \text{AQI} \le 50 \\
+\textbf{Satisfactory}, & 51 \le \text{AQI} \le 100 \\
+\textbf{Moderate}, & 101 \le \text{AQI} \le 200 \\
+\textbf{Poor}, & 201 \le \text{AQI} \le 300 \\
+\textbf{Very Poor}, & 301 \le \text{AQI} \le 400 \\
+\textbf{Severe}, & \text{AQI} \ge 401 
+\end{cases}$$
 
 ---
 
