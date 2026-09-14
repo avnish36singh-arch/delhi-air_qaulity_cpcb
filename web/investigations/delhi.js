@@ -116,3 +116,68 @@ function renderDelhiTimeseries(data) {
 
   Plotly.newPlot('delhi-chart-timeseries', traces, layout, CONFIG);
 }
+
+// Fetch master cleaned dataset to render Indicative Source Signature diagnostic
+fetch('../data/cleaned.json')
+  .then(r => r.json())
+  .then(records => {
+    renderSourceBreakdown(records);
+  })
+  .catch(err => console.error('Sources data error:', err));
+
+function renderSourceBreakdown(records) {
+  const counts = {};
+  records.forEach(r => {
+    const reg = r.Source_Regime;
+    if (reg && reg !== 'Unclassified') {
+      counts[reg] = (counts[reg] || 0) + 1;
+    }
+  });
+
+  const labels = Object.keys(counts);
+  const values = Object.values(counts);
+
+  const colors = {
+    'Industrial Solvent Emissions': '#A855F7',
+    'Fugitive & Crustal Dust': '#F59E0B',
+    'Biomass & Stubble Smog': '#EF4444',
+    'Vehicular & Urban Mixed': '#22D3EE',
+    'Regional Background': '#10B981'
+  };
+
+  const pieColors = labels.map(l => colors[l] || '#94A3B8');
+
+  const trace = [{
+    values: values,
+    labels: labels,
+    type: 'pie',
+    hole: 0.55,
+    textinfo: 'label+percent',
+    hoverinfo: 'label+value+percent',
+    textposition: 'outside',
+    automargin: true,
+    marker: {
+      colors: pieColors,
+      line: { color: '#0A0B0D', width: 2 }
+    }
+  }];
+
+  const layout = {
+    ...OBSIDIAN_LAYOUT,
+    margin: { t: 30, r: 30, b: 50, l: 30 },
+    showlegend: true,
+    legend: {
+      orientation: 'h',
+      y: -0.15,
+      x: 0,
+      font: { size: 11, color: '#9BA3AF' }
+    },
+    hoverlabel: {
+      bgcolor: '#11141A',
+      bordercolor: 'rgba(255, 255, 255, 0.15)',
+      font: { family: 'Inter', color: '#FFFFFF', size: 12 }
+    }
+  };
+
+  Plotly.newPlot('delhi-chart-sources', trace, layout, CONFIG);
+}

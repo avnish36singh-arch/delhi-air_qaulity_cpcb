@@ -128,17 +128,17 @@ def plot_wind_rose_and_sources(data, output_path):
     for at in autotexts:
         at.set_color('white')
         at.set_fontweight('bold')
-    ax4.set_title("Empirical Emission Source Regime Attribution", fontsize=12, fontweight='bold')
+    ax4.set_title("Indicative Source Signature (ratio-based diagnostic)", fontsize=12, fontweight='bold')
     
     plt.subplots_adjust(top=0.93, bottom=0.08, left=0.07, right=0.93, hspace=0.35, wspace=0.35)
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     plt.savefig(output_path, dpi=300)
     plt.close()
-    print(f"Source apportionment visual saved to: {output_path}")
+    print(f"Source signature visual saved to: {output_path}")
 
 def run_source_analysis(df, output_plot_path=None):
-    """Main execution function for source apportionment."""
-    print("Performing empirical chemical fingerprinting and directional polar modeling...")
+    """Main execution function for source diagnostic analysis."""
+    print("Performing ratio-based diagnostic source analysis and directional polar modeling...")
     data_sources = compute_source_fingerprints(df)
     if output_plot_path:
         plot_wind_rose_and_sources(data_sources, output_plot_path)

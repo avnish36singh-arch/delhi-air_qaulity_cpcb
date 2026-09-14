@@ -275,25 +275,31 @@ To evaluate the operational predictability of severe air quality episodes, a sup
 4. **$AT_t$ (Ambient Temperature)**: Inversion trigger and boundary layer dynamics.
 5. **$BP_t$ (Barometric Pressure)**: High-pressure anticyclonic stagnation marker.
 
+> **Methodological Disclosure & Gap-Handling Note**: Features are constructed strictly within each contiguous monitoring year with small gaps ($\le 2$ days) linearly interpolated; longer gaps forward/back-filled. Out-of-time prospective testing on year 2023 with zero temporal leakage.
+
 ---
 
-## 9. Empirical Source Apportionment & Directional Transport Dynamics
+## 9. Indicative Source Signature (ratio-based diagnostic) & Directional Transport Dynamics
 
-Combining directional Wind Direction ($WD$) binning with diagnostic chemical tracer ratios provides empirical attribution of regional emissions.
+Combining directional Wind Direction ($WD$) binning with diagnostic chemical tracer ratios provides an indicative screening diagnostic of regional emissions. *(Note: This ratio-based classification represents qualitative indicative signatures, distinct from rigorous receptor modeling such as Positive Matrix Factorization [PMF] or Chemical Mass Balance [CMB] on speciated chemical composition data).*
 
 ### 1. Directional Particulate Pollution Rose
 - **Northwest to North-Northwest ($300^\circ - 330^\circ$)**: Dominates peak severe $PM_{2.5}$ concentrations during post-monsoon and early winter, aligning with regional transboundary biomass and agricultural residue plumes entering the airshed.
 - **Southeast to East ($90^\circ - 140^\circ$)**: Exhibits elevated $NO_2$ and $SO_2$ loading, indicating heavy vehicular freight corridors and downwind industrial zones.
 
-### 2. Empirical Source Regime Attribution
+### 2. Indicative Source Signature Distribution
 
-| Source Regime | Diagnostic Chemical Criteria | Attribution (% of Monitored Days) | Primary Seasonal Occurrence |
-| :--- | :--- | :---: | :--- |
-| **Vehicular & Urban Mixed** | $0.40 \le PM_{2.5}/PM_{10} < 0.65$; $1.5 \le T/B \le 2.5$ | **43.8%** | Year-round baseline urban traffic |
-| **Biomass & Stubble Smog** | $PM_{2.5}/PM_{10} \ge 0.65$; Post-Monsoon / Winter | **28.6%** | October – January acute episodes |
-| **Fugitive & Crustal Road Dust**| $PM_{2.5}/PM_{10} < 0.40$; High wind/dry conditions | **14.2%** | March – June pre-monsoon summer |
-| **Industrial Solvent Emissions**| $Toluene/Benzene > 3.0$ | **7.5%** | Periodic localized solvent releases |
-| **Regional Background** | Low concentrations during peak precipitation | **5.9%** | July – September monsoon washout |
+Methodology: Regimes are classified via fine-to-coarse particulate ratios ($PM_{2.5}/PM_{10}$) and volatile aromatic tracer ratios ($Toluene/Benzene$), gated by seasonal meteorological conditions.
+
+| Indicative Regime | Diagnostic Criteria | Monitored Days | Share of Classified Days (%) | Primary Seasonal Phasing |
+| :--- | :--- | :---: | :---: | :--- |
+| **Industrial Solvent Emissions** | $Toluene/Benzene > 3.0$ | **567** | **50.1%** | Localized and regional solvent/industrial tracer loading |
+| **Fugitive & Crustal Road Dust** | $PM_{2.5}/PM_{10} < 0.40$ (Summer / Monsoon) | **307** | **27.1%** | Pre-monsoon dry months & high mechanical shear |
+| **Biomass & Stubble Smog** | $PM_{2.5}/PM_{10} \ge 0.65$ (Winter / Post-Monsoon) | **200** | **17.7%** | October – January acute transboundary combustion plumes |
+| **Vehicular & Urban Mixed** | $0.40 \le PM_{2.5}/PM_{10} < 0.65$ | **54** | **4.8%** | Urban background traffic & tailpipe emissions |
+| **Regional Background** | Baseline residual concentration | **3** | **0.3%** | Peak monsoon precipitation scavenging |
+
+*(Total classified: 1,131 days; 694 days unclassified due to missing PM component or off-season threshold bounds).*
 
 ---
 
@@ -309,7 +315,7 @@ All publication-grade visual charts generated at 300 DPI are located in `outputs
 6. `outputs/plots/06_meteorology_impact.png`: Meteorological Scatter Regressions (Temperature, Pressure, Radiation, Rain vs AQI).
 7. `outputs/plots/07_monthly_aqi_heatmap.png`: Month vs Year Heatmap showing cyclical winter peaks and monsoon lulls.
 8. `outputs/plots/08_forecast_evaluation.png`: 24-hr Ahead Predictive ML Evaluation (Observed vs Predicted Timeline & Feature Importance).
-9. `outputs/plots/09_wind_rose_and_sources.png`: Directional Wind Rose Polar Plots ($PM, NO_2, SO_2$) & Empirical Source Regimes.
+9. `outputs/plots/09_wind_rose_and_sources.png`: Directional Wind Rose Polar Plots ($PM, NO_2, SO_2$) & Indicative Source Signatures.
 
 ---
 *Report compiled autonomously via the Master Air Quality & AQI Analytical Pipeline.*

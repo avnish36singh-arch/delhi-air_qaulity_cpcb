@@ -61,12 +61,14 @@ where:
 
 Let $\mathcal{P} = \{\text{PM}_{2.5}, \text{PM}_{10}, \text{NO}_2, \text{NH}_3, \text{SO}_2, \text{CO}, \text{O}_3\}$ denote the set of seven regulatory criteria pollutants. For any given monitoring day, let $\mathcal{P}_{\text{valid}} \subseteq \mathcal{P}$ represent the subset of pollutants with valid measured 24-hour average concentrations.
 
-The composite daily National Air Quality Index ($\text{AQI}$) is formally defined as:
+In strict compliance with Central Pollution Control Board (CPCB) guidelines, an official regulatory AQI is computed when at least three criteria pollutants are available with at least one particulate matter species ($\text{PM}_{2.5}$ or $\text{PM}_{10}$):
 
-$$\text{AQI} = \begin{cases} 
-\displaystyle \max_{p \in \mathcal{P}_{\text{valid}}} \left(I_p\right), & \text{if } |\mathcal{P}_{\text{valid}}| \ge 3 \;\;\text{and}\;\; \left(\text{PM}_{2.5} \in \mathcal{P}_{\text{valid}} \;\lor\; \text{PM}_{10} \in \mathcal{P}_{\text{valid}}\right) \\ 
-\text{NaN (Insufficient Data)}, & \text{otherwise} 
+$$\text{AQI}_{\text{Official}} = \begin{cases} 
+\text{True}, & \text{if } |\mathcal{P}_{\text{valid}}| \ge 3 \;\;\text{and}\;\; \left(\text{PM}_{2.5} \in \mathcal{P}_{\text{valid}} \;\lor\; \text{PM}_{10} \in \mathcal{P}_{\text{valid}}\right) \\ 
+\text{False (Indicative Fallback / Incomplete)}, & \text{otherwise} 
 \end{cases}$$
+
+$$\text{AQI} = \max_{p \in \mathcal{P}_{\text{valid}}} \left(I_p\right) \quad \text{for } |\mathcal{P}_{\text{valid}}| > 0 \;\land\; \left(\text{PM}_{2.5} \in \mathcal{P}_{\text{valid}} \;\lor\; \text{PM}_{10} \in \mathcal{P}_{\text{valid}}\right)$$
 
 #### Dominant Pollutant Formulation
 The criteria pollutant driving the composite index on that day is designated as the **Dominant Pollutant** ($p^*$):
@@ -111,7 +113,7 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 #### Technical Interpretation
 - **Long-Term Cyclical Dynamics**: The multi-year time series reveals acute annual periodicity dictated by planetary boundary layer dynamics and regional synoptic climatology.
 - **Rolling Averages**: The 7-day rolling mean (blue line) filters high-frequency synoptic volatility to capture sub-seasonal stagnation events, while the 30-day trendline (red line) highlights the seasonal oscillation between clean monsoon washouts ($\text{AQI} < 100$) and winter crises ($\text{AQI} > 350$).
-- **CPCB Health Threshold Distribution**: The multi-year mean composite AQI is **$221.23 \pm 123.17$**, categorizing the airshed as **Poor** on average. Over 78.8% of valid monitoring days violate the acceptable clean-air threshold ($\text{AQI} \le 100$), with 36.2% of days falling into the **Very Poor** or **Severe** health categories ($\text{AQI} > 300$).
+- **CPCB Health Threshold Distribution**: Across **1,137 official CPCB valid monitoring days**, the mean composite AQI is **$221.00 \pm 122.98$**, categorizing the airshed as **Poor** on average. Over **78.80%** (896 days) violate the acceptable clean-air threshold ($\text{AQI} \le 100$), with **36.15%** (411 days) falling into the **Very Poor** or **Severe** health categories ($\text{AQI} > 300$).
 
 ---
 
@@ -131,11 +133,9 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 ![Seasonal AQI Dynamics](outputs/plots/03_seasonal_aqi_dynamics.png)
 
 #### Technical Interpretation
-- **Synoptic Seasonal Disparity**: 
-  - **Monsoon (June–September)**: Mean AQI of **$104.43 \pm 63.48$** (Median: 90.60). Wet deposition through in-cloud and below-cloud scavenging effectively washes out coarse and fine aerosols.
-  - **Summer (March–May)**: Mean AQI of **$215.19 \pm 89.46$**. Characterized by convective thermal updrafts and intense regional transport of coarse mineral dust.
-  - **Post-Monsoon (October–November)**: Mean AQI jumps to **$299.96 \pm 114.41$**, peaking in November at **374.41** (Median: 384.00). Driven by regional agricultural residue combustion superimposed on dropping planetary boundary layer height.
-  - **Winter (December–February)**: Mean AQI peaks at **$313.32 \pm 86.42$** (Median: 332.10). Chronic nocturnal inversions and low surface wind speeds trap emissions within a shallow mixing layer ($<300\ \text{m}$).
+- **Seasonal Polarity**: Striking bimodal seasonal distribution between monsoon scavenging and winter trapping.
+- **Monsoon Baseline**: Median AQI during monsoon drops to $78.5$ (Satisfactory), driven by convective planetary boundary layer expansion and recurring wet precipitation washout.
+- **Winter Crisis**: Post-monsoon and winter seasons record median AQIs of $264.0$ and $298.5$ respectively, with over $65\%$ of winter days categorizing as Very Poor or Severe due to shallow radiation inversions and north-westerly agricultural stubble smoke transport.
 
 ---
 
@@ -144,10 +144,8 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 ![Dominant Pollutant Distribution](outputs/plots/04_dominant_pollutants.png)
 
 #### Technical Interpretation
-- **Particulate Primacy**: Across the 1,138 valid CPCB monitoring days, particulate matter accounts for **95.26%** of all peak AQI determinations:
-  - **$\text{PM}_{2.5}$ Dominance**: 51.8% of valid days (589 days).
-  - **$\text{PM}_{10}$ Dominance**: 43.5% of valid days (495 days).
-- **Gaseous Contribution**: Gaseous pollutants ($\text{NO}_2$, $\text{CO}$, $\text{SO}_2$, $\text{O}_3$) collectively trigger the peak sub-index on only 4.74% of monitored days, confirming that regulatory interventions targeting particulate abatement are necessary and sufficient to lower composite NAQI levels.
+- **Particulate Hegemony**: Fine particulates ($\text{PM}_{2.5}$) serve as the primary dominant pollutant on **$51.8\%$** of valid days, while respirable dust ($\text{PM}_{10}$) drives **$43.4\%$** of days.
+- **Secondary Species**: Carbon Monoxide ($\text{CO}$) accounts for **$4.4\%$** of dominant assignments (predominantly in localized stagnation events), and Ground-Level Ozone ($\text{O}_3$) accounts for **$0.35\%$** during peak photochemical summer episodes.
 
 ---
 
@@ -156,12 +154,8 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 ![PM Ratios and BTEX Dynamics](outputs/plots/05_pm_and_btex_dynamics.png)
 
 #### Technical Interpretation
-- **Fine Particle Fraction ($\text{PM}_{2.5}/\text{PM}_{10}$)**:
-  - Ratios exceeding $0.65$ dominate November and December, indicating secondary aerosol formation and biomass combustion smoke plumes.
-  - Ratios dropping below $0.40$ during April–June indicate crustal mechanical suspension, construction debris, and long-range dust transport.
-- **Volatile Aromatics (BTEX)**:
-  - **Benzene Non-Compliance**: 15.73% of days violate the annual NAAQS standard ($5.0\ \mu\text{g}/\text{m}^3$), with peak concentrations reaching $13.16\ \mu\text{g}/\text{m}^3$.
-  - **Toluene/Benzene Ratio Diagnostic**: The mean $T/B$ ratio of $6.58$ indicates substantial contributions from industrial solvents, coating formulations, and printing facilities superimposed on standard vehicular exhaust ($T/B \approx 1.5 - 2.5$).
+- **Combustion vs. Mechanical Dust Diagnostics**: The fine fraction ratio ($\text{PM}_{2.5}/\text{PM}_{10}$) peaks above $0.65$ in November and December, diagnosing secondary aerosol formation and fine combustion aerosols (stubble and biomass smoke). During May and June, the ratio drops below $0.40$, signaling dominance of crustal coarse windblown dust.
+- **Toluene-to-Benzene ($T/B$) Diagnostics**: The mean ambient $T/B$ ratio regularly exceeds $3.0$, indicating strong volatile aromatic contributions from localized solvent usage, printing/coating processes, and evaporative emissions, surpassing pure vehicular exhaust baselines ($T/B \approx 1.5 - 2.0$).
 
 ---
 
@@ -198,9 +192,11 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
   - **Ridge Linear Baseline**: **$R^2 = 0.764$**, **$\text{RMSE} = 55.61$**, **$\text{MAE} = 42.40$**, Health Category Classification Accuracy = **$60.8\%$**.
 - **Feature Importance (Gini Impurity Reduction)**: Current-day AQI ($\text{AQI}_t$) and ground-level fine particulates ($\text{PM}_{2.5\_t}$) represent the strongest predictors, followed by 3-day rolling AQI momentum and Ambient Temperature ($\text{AT}_t$), confirming high atmospheric inertia in the airshed.
 
+> **Methodological Disclosure & Gap-Handling Note**: Feature construction uses `.interpolate(method="linear", limit=2).bfill().ffill()`; small gaps ($\le 2$ days) are linearly interpolated, while any longer gaps within continuous monitoring years are forward/back-filled. Target is $t+1$ (next-day AQI) trained strictly on years $< 2023$ and evaluated on 2023 out-of-time test set with zero temporal leakage.
+
 ---
 
-### Figure 9: Directional Wind Rose Polar Modeling and Source Apportionment
+### Figure 9: Directional Wind Rose Polar Modeling and Indicative Source Signature (ratio-based diagnostic)
 
 ![Directional Wind Rose and Source Apportionment](outputs/plots/09_wind_rose_and_sources.png)
 
@@ -208,24 +204,26 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 - **Directional Transport Rose**:
   - **Northwest Sector ($300^\circ - 330^\circ$)**: Accounts for the highest particulate pollution loading ($\text{PM}_{2.5}$ exceeding $180\ \mu\text{g}/\text{m}^3$), aligning directly with regional transboundary agricultural burning corridors entering the urban airshed.
   - **Southeast Sector ($90^\circ - 140^\circ$)**: Associated with elevated $\text{NO}_2$ and $\text{SO}_2$ loading, indicating heavy diesel freight corridors and downwind industrial clusters.
-- **Empirical Source Attribution**:
-  - **Vehicular and Urban Mixed**: **43.8%** of monitored days ($0.40 \le \text{PM}_{2.5}/\text{PM}_{10} < 0.65$).
-  - **Biomass and Agricultural Stubble Burning**: **28.6%** of monitored days ($\text{PM}_{2.5}/\text{PM}_{10} \ge 0.65$ during Post-Monsoon/Winter).
-  - **Fugitive and Crustal Road Dust**: **14.2%** of monitored days ($\text{PM}_{2.5}/\text{PM}_{10} < 0.40$ during dry summer months).
-  - **Industrial Solvents and Fugitive BTEX**: **7.5%** of monitored days ($T/B > 3.0$).
-  - **Monsoon Clean Baseline**: **5.9%** of monitored days.
+- **Indicative Source Signature (ratio-based diagnostic)**:
+  - *Methodology*: Regimes classified via fine-to-coarse particulate ratios ($\text{PM}_{2.5}/\text{PM}_{10}$) and volatile aromatic tracer ratios ($\text{Toluene}/\text{Benzene}$), gated by seasonal meteorological conditions. *(Note: This ratio-based classification represents qualitative indicative diagnostic signatures, distinct from receptor modeling such as PMF/CMB).*
+  - **Industrial Solvent Emissions**: **50.1%** of classified days ($T/B > 3.0$, reflecting elevated volatile organic aromatic solvent signals in north Delhi airshed).
+  - **Fugitive & Crustal Road Dust**: **27.1%** of classified days ($\text{PM}_{2.5}/\text{PM}_{10} < 0.40$ during dry summer and monsoon periods).
+  - **Biomass & Stubble Smog**: **17.7%** of classified days ($\text{PM}_{2.5}/\text{PM}_{10} \ge 0.65$ during post-monsoon and winter).
+  - **Vehicular & Urban Mixed**: **4.8%** of classified days ($0.40 \le \text{PM}_{2.5}/\text{PM}_{10} < 0.65$).
+  - **Regional Background**: **0.3%** of classified days.
+  *(Total classified: 1,131 days; 694 days unclassified due to missing PM component or off-season threshold bounds).*
 
 ---
 
 ## Regulatory NAAQS Compliance Matrix
 
-Compliance evaluated against official CPCB 24-hour National Ambient Air Quality Standards:
+Compliance evaluated against official CPCB 24-hour National Ambient Air Quality Standards across official valid monitoring days ($N = 1,137$):
 
 | Monitored Pollutant | CPCB 24-hr NAAQS Limit | Observed Mean Concentration | Observed Peak Concentration | Monitored Days ($n$) | Days Violating Standard | Non-Compliance Rate (%) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| $\text{PM}_{10}$ | $100\ \mu\text{g}/\text{m}^3$ | $207.46\ \mu\text{g}/\text{m}^3$ | $640.19\ \mu\text{g}/\text{m}^3$ | 1,135 | **887** | **78.15%** |
-| $\text{PM}_{2.5}$ | $60\ \mu\text{g}/\text{m}^3$ | $107.52\ \mu\text{g}/\text{m}^3$ | $529.87\ \mu\text{g}/\text{m}^3$ | 1,134 | **710** | **62.61%** |
-| $\text{Benzene}$ | $5.0\ \mu\text{g}/\text{m}^3$ (Annual) | $2.32\ \mu\text{g}/\text{m}^3$ | $13.16\ \mu\text{g}/\text{m}^3$ | 1,138 | **179** | **15.73%** |
+| $\text{PM}_{10}$ | $100\ \mu\text{g}/\text{m}^3$ | $207.15\ \mu\text{g}/\text{m}^3$ | $640.19\ \mu\text{g}/\text{m}^3$ | 1,134 | **886** | **78.13%** |
+| $\text{PM}_{2.5}$ | $60\ \mu\text{g}/\text{m}^3$ | $107.35\ \mu\text{g}/\text{m}^3$ | $529.87\ \mu\text{g}/\text{m}^3$ | 1,133 | **709** | **62.58%** |
+| $\text{Benzene}$ | $5.0\ \mu\text{g}/\text{m}^3$ (Annual) | $2.32\ \mu\text{g}/\text{m}^3$ | $13.16\ \mu\text{g}/\text{m}^3$ | 1,137 | **179** | **15.74%** |
 | $\text{NO}_2$ | $80\ \mu\text{g}/\text{m}^3$ | $29.23\ \mu\text{g}/\text{m}^3$ | $115.59\ \mu\text{g}/\text{m}^3$ | 1,135 | **40** | **3.52%** |
 | $\text{CO}$ | $2.0\ \text{mg}/\text{m}^3$ | $1.07\ \text{mg}/\text{m}^3$ | $4.02\ \text{mg}/\text{m}^3$ | 1,136 | **32** | **2.82%** |
 | $\text{Ozone}\ (\text{O}_3)$ | $100\ \mu\text{g}/\text{m}^3$ (8-hr) | $31.05\ \mu\text{g}/\text{m}^3$ | $109.72\ \mu\text{g}/\text{m}^3$ | 1,118 | **4** | **0.36%** |
@@ -283,7 +281,7 @@ Open `http://localhost:8000` in any modern web browser.
 │   ├── aqi_engine.py                  # CPCB piecewise linear NAQI interpolation engine
 │   ├── visualizer.py                  # Matplotlib and Seaborn analytical visualizer
 │   ├── forecasting.py                 # Random Forest and Ridge 24-hr predictive ML engine
-│   └── source_apportionment.py        # Directional polar wind rose and chemical source attribution
+│   └── source_apportionment.py        # Directional polar wind rose and indicative source signature analysis
 ├── reports/
 │   ├── air_quality_analysis_report.md # Comprehensive 10-section formal scientific analytical report
 │   └── component_statistics.csv        # Summary parametric and non-parametric statistics (24 components)

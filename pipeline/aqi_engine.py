@@ -125,7 +125,10 @@ def compute_aqi_dataset(df):
     # Calculate sub-indices for each criteria pollutant
     for p in pollutants:
         sub_col = f"SubIndex_{p}"
-        df[sub_col] = df[p].apply(lambda val: calculate_sub_index(val, p))
+        if p in df.columns:
+            df[sub_col] = df[p].apply(lambda val: calculate_sub_index(val, p))
+        else:
+            df[sub_col] = np.nan
         
     sub_index_cols = [f"SubIndex_{p}" for p in pollutants]
     
@@ -136,16 +139,16 @@ def compute_aqi_dataset(df):
         
         if len(valid_subs) >= 3 and has_pm:
             max_p = max(valid_subs, key=valid_subs.get)
-            return valid_subs[max_p], max_p
+            return valid_subs[max_p], max_p, True
         elif len(valid_subs) > 0 and has_pm:
-            # Fallback indicative AQI when at least PM is available
             max_p = max(valid_subs, key=valid_subs.get)
-            return valid_subs[max_p], max_p
-        return np.nan, "None"
+            return valid_subs[max_p], max_p, False
+        return np.nan, "None", False
         
     res = df.apply(compute_row_aqi, axis=1)
     df['AQI'] = [r[0] for r in res]
     df['Dominant_Pollutant'] = [r[1] for r in res]
+    df['AQI_Official'] = [r[2] for r in res]
     df['AQI_Category'] = df['AQI'].apply(get_aqi_category)
     
     cat_order = ["Good", "Satisfactory", "Moderate", "Poor", "Very Poor", "Severe", "Unknown"]

@@ -125,6 +125,41 @@ class TestAQIDatasetComputation(unittest.TestCase):
         self.assertAlmostEqual(res.loc[0, 'AQI'], 400.0, delta=1.0)
         self.assertEqual(res.loc[0, 'Dominant_Pollutant'], 'PM2.5')
         self.assertEqual(res.loc[0, 'AQI_Category'], 'Very Poor')
+        self.assertTrue(res.loc[0, 'AQI_Official'])
+
+    def test_cpcb_official_validity_rule(self):
+        # 1. Official CPCB: >= 3 criteria pollutants with at least one PM
+        df_official = pd.DataFrame([{
+            "Timestamp": "2023-01-01",
+            "PM2.5": 60.0,
+            "NO2": 40.0,
+            "SO2": 40.0
+        }])
+        res1 = compute_aqi_dataset(df_official)
+        self.assertTrue(res1.loc[0, 'AQI_Official'])
+        self.assertFalse(np.isnan(res1.loc[0, 'AQI']))
+
+        # 2. Indicative fallback: < 3 criteria pollutants with PM
+        df_indicative = pd.DataFrame([{
+            "Timestamp": "2023-01-02",
+            "PM2.5": 60.0,
+            "NO2": 40.0
+            # only 2 criteria pollutants
+        }])
+        res2 = compute_aqi_dataset(df_indicative)
+        self.assertFalse(res2.loc[0, 'AQI_Official'])
+        self.assertFalse(np.isnan(res2.loc[0, 'AQI']))
+
+        # 3. Invalid: No PM available
+        df_invalid = pd.DataFrame([{
+            "Timestamp": "2023-01-03",
+            "NO2": 40.0,
+            "SO2": 40.0,
+            "CO": 1.0
+        }])
+        res3 = compute_aqi_dataset(df_invalid)
+        self.assertFalse(res3.loc[0, 'AQI_Official'])
+        self.assertTrue(np.isnan(res3.loc[0, 'AQI']))
 
 if __name__ == '__main__':
     unittest.main()

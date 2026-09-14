@@ -72,7 +72,7 @@ def train_and_evaluate_forecast(df, output_plot_path=None):
     train_df = df_feat[df_feat["Year"] < 2023].copy()
     test_df = df_feat[df_feat["Year"] == 2023].copy()
     
-    ignore_cols = ["Timestamp", "Target_AQI_Next_Day", "Year", "Season", "Dominant_Pollutant", "AQI_Category"]
+    ignore_cols = ["Timestamp", "Target_AQI_Next_Day", "Year", "Season", "Dominant_Pollutant", "AQI_Category", "AQI_Official"]
     candidate_features = [c for c in train_df.columns if c not in ignore_cols and not c.startswith("SubIndex_") and np.issubdtype(train_df[c].dtype, np.number)]
     
     # Keep features that have at least 50% valid values in training set

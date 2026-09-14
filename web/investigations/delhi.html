@@ -75,15 +75,15 @@
         </div>
 
         <div class="se-metric-card">
-          <div class="se-metric-num" style="color: var(--data-cyan);">62.4%</div>
-          <div class="se-metric-label">Valid CPCB NAQI Days</div>
-          <div class="se-metric-source">1,138 valid days meeting the official 3-pollutant requirement</div>
+          <div class="se-metric-num" style="color: var(--data-cyan);">62.3%</div>
+          <div class="se-metric-label">Official CPCB NAQI Days</div>
+          <div class="se-metric-source">1,137 official days meeting the regulatory 3-pollutant + PM standard</div>
         </div>
 
         <div class="se-metric-card">
           <div class="se-metric-num" style="color: #FFFFFF;">PM<sub>2.5</sub></div>
           <div class="se-metric-label">Dominant Pollutant</div>
-          <div class="se-metric-source">Responsible for over 90% of daily maximum sub-index scores</div>
+          <div class="se-metric-source">Responsible for over 95% of daily maximum sub-index scores (with PM10)</div>
         </div>
       </div>
     </section>
@@ -118,10 +118,10 @@
 
       <h2 class="editorial-headline" style="font-size: 2rem; color: #FFFFFF; margin: 3rem 0 1rem 0;">2. Regulatory Sub-Index Engineering &amp; Criteria Completeness</h2>
       <p>
-        Under CPCB criteria, an official AQI can only be declared if at least three criteria pollutants are monitored with sufficient data completeness, including at least one particulate species (PM<sub>2.5</sub> or PM<sub>10</sub>).
+        Under official CPCB criteria, a regulatory AQI requires at least three criteria pollutants to be actively monitored with sufficient data completeness, including at least one particulate species (PM<sub>2.5</sub> or PM<sub>10</sub>).
       </p>
       <p>
-        Across the 1,825 recorded dates, 1,138 days (62.4%) satisfied all regulatory validity criteria. On valid days, PM<sub>2.5</sub> acted as the dominant pollutant determining the overall daily AQI in over 90% of instances, confirming that fine particulate matter remains the primary public health hazard in northern Delhi.
+        Across the 1,825 calendar days, <strong>1,137 days (62.3%)</strong> satisfied all official regulatory validity criteria. Exactly 1 day was monitored under fallback indicative rules (fewer than 3 pollutants with PM present), and 687 days represent unmonitored dropouts (dominated by the 732-day 2019–2020 monitoring pause). On valid days, PM<sub>2.5</sub> (51.8%) and PM<sub>10</sub> (43.4%) combined drove over 95% of peak sub-index determinations, confirming that particulate matter is the overwhelming public health risk in northern Delhi.
       </p>
 
       <h2 class="editorial-headline" style="font-size: 2rem; color: #FFFFFF; margin: 3rem 0 1rem 0;">3. Meteorological Entrapment &amp; Inversion Dynamics</h2>
@@ -129,12 +129,66 @@
         During the winter months (November to January), cold north-westerly surface winds bring regional biomass combustion aerosols into the capital. The Himalayan mountain barrier prevents further northward transport, while nocturnal radiative cooling creates sharp temperature inversions that trap particulates within a shallow boundary layer under 300 meters above ground level.
       </p>
 
+      <h2 class="editorial-headline" style="font-size: 2rem; color: #FFFFFF; margin: 3rem 0 1rem 0;">4. Indicative Source Signature (ratio-based diagnostic)</h2>
+      <p>
+        By coupling directional wind roses with diagnostic chemical tracer ratios (PM<sub>2.5</sub>/PM<sub>10</sub> fine-to-coarse ratio and Toluene/Benzene volatile organic ratio), days are categorized into indicative emission signatures across seasons.
+      </p>
+
+      <div class="se-chart-wrap">
+        <div class="se-chart-header">
+          <div class="se-chart-title">Indicative Source Signature Distribution (Alipur, Delhi)</div>
+          <div class="se-chart-caption">Breakdown across 1,131 classified monitoring days based on diagnostic chemical tracer thresholds.</div>
+        </div>
+        <div id="delhi-chart-sources" style="width: 100%; min-height: 400px;"></div>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.6;">
+          <strong>Diagnostic Methodology:</strong> Source regimes classified using empirical diagnostic criteria: PM<sub>2.5</sub>/PM<sub>10</sub> fine-to-coarse ratio thresholds combined with Toluene/Benzene volatile organic tracer ratios, gated by seasonal meteorological regimes. (Qualitative ratio-based screening diagnostic, not receptor modeling such as PMF/CMB).
+        </p>
+      </div>
+
+      <div style="margin: 2rem 0;">
+        <img src="../assets/delhi/09_wind_rose_and_sources.png" alt="Directional Wind Rose and Indicative Source Signature" style="width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: block;" loading="lazy">
+        <span class="citation-tag" style="display: block; margin-top: 0.5rem;">Figure 9 from pipeline: Directional wind roses (PM, NO2, SO2) and ratio-based indicative source signatures.</span>
+      </div>
+
+      <h2 class="editorial-headline" style="font-size: 2rem; color: #FFFFFF; margin: 3rem 0 1rem 0;">5. Predictive Machine Learning (24-Hour Ahead AQI Forecasting)</h2>
+      <p>
+        We evaluated a supervised machine learning architecture to forecast next-day AQI ($t+1$) using 61 lag and meteorological features ($t, t-1, t-2$ criteria species, 3-day momentum, and solar/temperature metrics).
+      </p>
+      <p>
+        To prevent future information from leaking into the past, training was executed chronologically on all data before 2023, while <strong>2023 served as a true prospective out-of-time test set</strong>. Feature selection and median imputations were fitted strictly on the training set.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+        <div class="se-metric-card" style="padding: 1.25rem;">
+          <div class="se-metric-num" style="font-size: 2rem; color: var(--data-cyan);">0.769</div>
+          <div class="se-metric-label">Random Forest R² (2023)</div>
+          <div class="se-metric-source">Out-of-time test year evaluation</div>
+        </div>
+        <div class="se-metric-card" style="padding: 1.25rem;">
+          <div class="se-metric-num" style="font-size: 2rem; color: #FFFFFF;">54.98</div>
+          <div class="se-metric-label">RMSE (AQI Units)</div>
+          <div class="se-metric-source">MAE: 39.69 AQI points</div>
+        </div>
+        <div class="se-metric-card" style="padding: 1.25rem;">
+          <div class="se-metric-num" style="font-size: 2rem; color: var(--data-emerald);">62.2%</div>
+          <div class="se-metric-label">Health Category Hit Rate</div>
+          <div class="se-metric-source">Exact 6-tier CPCB health category match</div>
+        </div>
+      </div>
+
+      <div style="margin: 2rem 0;">
+        <img src="../assets/delhi/08_forecast_evaluation.png" alt="24-Hour Forecast Evaluation Visual" style="width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: block;" loading="lazy">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.6; border-left: 2px solid var(--data-cyan); padding-left: 1rem;">
+          <strong>Methodological Disclosure &amp; Gap-Handling Note:</strong> Small gaps (&le; 2 days) inside a monitoring year are linearly interpolated; longer gaps within a year are forward/back-filled. Out-of-time chronological split (Train: &lt; 2023, Test: 2023) evaluated prospectively with zero temporal leakage.
+        </p>
+      </div>
+
       <!-- Methodology & Source Code Link -->
       <div style="margin-top: 4rem; padding: 2.5rem; background: var(--bg-surface); border: 1px solid var(--border-subtle);">
         <span class="section-kicker">Reproducibility &amp; Pipeline Code</span>
         <h3 class="editorial-headline" style="font-size: 1.6rem; margin-bottom: 0.75rem; color: #FFFFFF;">Inspect Delhi Pipeline Code</h3>
         <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.65;">
-          The complete data extraction routines, sub-index math, correlation analysis, and data cleaning notebooks are open source on GitHub.
+          The complete data extraction routines, sub-index math, correlation analysis, forecasting, and data cleaning scripts are open source on GitHub.
         </p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
           <a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer" class="se-link" style="font-size: 0.9rem;">
