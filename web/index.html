@@ -3,397 +3,229 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signal Earth — Delhi's Air Quality Crisis: A Public-Health Investigation</title>
-  <meta name="description" content="A National Geographic and NASA Earth Observatory-level editorial visual investigation into multi-year ambient air quality, CPCB NAQI dynamics, chemical fingerprinting, and predictive AI forecasting in Delhi, India.">
+  <title>Signal Earth — Delhi Air Quality Investigation</title>
+  <meta name="description" content="A luxury visual investigation into multi-year ambient air quality, CPCB NAQI telemetry, and predictive AI forecasting in Delhi, India.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
   <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Sticky Minimal Editorial Header -->
-  <nav class="editorial-nav">
-    <div class="brand-tag">
-      <span class="brand-dot"></span>
-      <span>Signal Earth &middot; Delhi Air Investigation</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#ch-01" class="active">01 Cover</a></li>
-      <li><a href="#ch-02">02 The Scale</a></li>
-      <li><a href="#ch-03">03 Seasons</a></li>
-      <li><a href="#ch-04">04 Trajectory</a></li>
-      <li><a href="#ch-05">05 Smoke Plumes</a></li>
-      <li><a href="#ch-06">06 Fingerprint</a></li>
-      <li><a href="#ch-07">07 Forecast AI</a></li>
-      <li><a href="#ch-08">08 Repository</a></li>
+  <!-- =========================================================================
+       1. NAVIGATION BAR (Death Zone Style)
+       ========================================================================= -->
+  <header class="dz-navbar">
+    <a href="#" class="dz-logo">
+      <div class="dz-logo-mark">
+        <span>SIGNAL EARTH</span>
+        <span class="dz-logo-dot"></span>
+      </div>
+    </a>
+
+    <ul class="dz-nav-center">
+      <li><a href="#about" class="active">About Us</a></li>
+      <li><a href="#exposure">The Anatomy</a></li>
+      <li><a href="#airshed">The Airshed</a></li>
+      <li><a href="#telemetry">Telemetry</a></li>
+      <li><a href="#forecast">Predictive AI</a></li>
+      <li><a href="#downloads">Repository</a></li>
     </ul>
-    <div class="chapter-progress" id="chapter-indicator">CH 01 / 08</div>
-  </nav>
 
-  <!-- Sticky Side Pagination Dots -->
-  <aside class="slide-nav-dots" aria-label="Slide Navigation">
-    <button class="nav-dot active" data-target="#ch-01" title="Chapter 01: Cover"></button>
-    <button class="nav-dot" data-target="#ch-02" title="Chapter 02: The Scale"></button>
-    <button class="nav-dot" data-target="#ch-03" title="Chapter 03: The Seasons"></button>
-    <button class="nav-dot" data-target="#ch-04" title="Chapter 04: The Trajectory"></button>
-    <button class="nav-dot" data-target="#ch-05" title="Chapter 05: Smoke Plumes"></button>
-    <button class="nav-dot" data-target="#ch-06" title="Chapter 06: Fingerprints"></button>
-    <button class="nav-dot" data-target="#ch-07" title="Chapter 07: Forecast AI"></button>
-    <button class="nav-dot" data-target="#ch-08" title="Chapter 08: Action Matrix"></button>
-  </aside>
-
-  <!-- =========================================================================
-       CHAPTER 01: THE COVER (Reference Image 1)
-       ========================================================================= -->
-  <section class="slide hero-slide" id="ch-01">
-    <div class="container">
-      <div class="location-tag">Alipur &middot; Delhi, India</div>
-      
-      <div class="hero-content">
-        <h1 class="hero-title">Delhi's air is changing faster than the record gets read.</h1>
-        <div class="ochre-rule"></div>
-        <p class="hero-subtitle">Seven years of daily station data never announced a crisis. It just kept recording one.</p>
-        
-        <span class="category-tag-green">A Public-Health Investigation by Signal Earth &amp; CPCB Analytical Engine</span>
-        
-        <div class="hero-meta-row">
-          <div class="telemetry-badge">
-            <span style="color: var(--accent-amber);">&bull;</span>
-            <span>1,825 Daily Records</span>
-          </div>
-          <div class="telemetry-badge">
-            <span style="color: var(--accent-cyan);">&bull;</span>
-            <span>24 Monitored Species</span>
-          </div>
-          <div class="telemetry-badge">
-            <span style="color: var(--aqi-vpoor);">&bull;</span>
-            <span>Mean AQI: 221.2 (Poor)</span>
-          </div>
-          <div class="telemetry-badge">
-            <span style="color: var(--accent-emerald);">&bull;</span>
-            <span>Alipur DPCC, 2017&ndash;2023</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer-meta">
-        <span>Signal Earth &middot; Alipur, Delhi DPCC Daily Data, 2017&ndash;2023</span>
-        <span>01 / 08</span>
-      </div>
+    <div class="dz-nav-social">
+      <a href="https://www.instagram.com/signalearthhq/" target="_blank" rel="noopener noreferrer" class="social-pill-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://www.linkedin.com/company/signalearth/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" class="social-pill-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        <span>LinkedIn</span>
+      </a>
     </div>
-  </section>
+  </header>
 
-  <!-- =========================================================================
-       CHAPTER 02: THE SCALE OF THE CRISIS (Reference Image 4)
-       ========================================================================= -->
-  <section class="slide" id="ch-02">
-    <div class="container">
-      <div class="location-tag">Indo-Gangetic Basin &middot; Northern India</div>
-      
-      <div class="split-card-dark">
-        <div class="split-media-container">
-          <img src="assets/satellite_smoke_plume.jpg" alt="NASA Landsat 9 False-Color Satellite Image of Agricultural Smoke Plumes over River Basins">
-          <div class="media-stat-overlay">
-            <div class="stat-huge">529.9</div>
-            <div class="stat-huge-label">&micro;g/m&sup3; Peak PM2.5 Daily Exposure Recorded</div>
-          </div>
+  <main>
+    <!-- =========================================================================
+         2. HERO SECTION (Death Zone Mountain Layout)
+         ========================================================================= -->
+    <section class="dz-hero-section" id="about">
+      <div class="dz-hero-canvas">
+        <div class="dz-hero-focal-wrap">
+          <img src="assets/hero_satellite_earth.jpg" alt="Atmospheric Remote Sensing and Planetary Dynamic Contours over Northern India" class="dz-hero-focal-img">
         </div>
-        
-        <div class="split-editorial-body">
-          <h2 class="editorial-headline">This airshed moved deeper into crisis than the alarms sounded.</h2>
-          <p class="editorial-lead">Fine particulate matter (&thinsp;PM<sub>2.5</sub>&thinsp;) doesn't just hang in the sky. Measuring less than 2.5 microns across, it bypasses the body's upper respiratory defenses, penetrating deep into pulmonary alveoli and diffusing directly into arterial blood circulation.</p>
-          <div class="ochre-rule"></div>
-          <p class="editorial-italic-sub">Over 62.6% of all monitored days violently breached the national 24-hour safe threshold of 60 &micro;g/m&sup3;. Against the WHO guideline of 15 &micro;g/m&sup3;, non-compliance exceeds 94%.</p>
 
-          <!-- Interactive Threshold Comparator -->
-          <div class="comparator-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-              <span style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-slate);">Comparative Particulate Concentration Exposure (&micro;g/m&sup3;)</span>
-            </div>
-            
-            <div class="bar-comparator">
-              <div class="bar-row">
-                <span class="bar-label">WHO Safe Guideline</span>
-                <div class="bar-track"><div class="bar-fill" style="width: 2.8%; background: var(--aqi-good);"></div></div>
-                <span class="bar-val" style="color: var(--aqi-good);">15.0</span>
-              </div>
-              <div class="bar-row">
-                <span class="bar-label">CPCB 24-hr NAAQS Limit</span>
-                <div class="bar-track"><div class="bar-fill" style="width: 11.3%; background: var(--aqi-sat);"></div></div>
-                <span class="bar-val" style="color: var(--aqi-sat);">60.0</span>
-              </div>
-              <div class="bar-row">
-                <span class="bar-label">Delhi Multi-Year Mean</span>
-                <div class="bar-track"><div class="bar-fill" style="width: 20.3%; background: var(--aqi-poor);"></div></div>
-                <span class="bar-val" style="color: var(--aqi-poor);">107.5</span>
-              </div>
-              <div class="bar-row">
-                <span class="bar-label">Delhi Observed Peak</span>
-                <div class="bar-track"><div class="bar-fill" style="width: 100%; background: var(--aqi-severe);"></div></div>
-                <span class="bar-val" style="color: var(--aqi-severe);">529.9</span>
-              </div>
-            </div>
-          </div>
+        <div class="dz-hero-editorial-panel">
+          <div class="dz-section-tag">About the Investigation</div>
+          <h1 class="dz-hero-headline">Signal Earth is atmospheric intelligence</h1>
+          <p class="dz-hero-paragraph">We are dedicated to building public-health accountability through multi-year continuous station telemetry and satellite remote sensing across the world's most acute airsheds.</p>
         </div>
       </div>
 
-      <div class="slide-footer-meta">
-        <span>Source: NASA Earth Observatory / USGS Landsat &middot; CPCB Monitoring Data</span>
-        <span>02 / 08</span>
+      <!-- Delicate vertical golden connecting line -->
+      <div class="dz-vertical-guide-line"></div>
+    </section>
+
+    <!-- =========================================================================
+         3. GIANT TYPOGRAPHIC MASK SECTION (The "8000m" Equivalent)
+         ========================================================================= -->
+    <section class="dz-giant-stat-section">
+      <div class="dz-giant-stat-text">529 µg/m³</div>
+      <div class="dz-giant-tagline">This is our telemetry &middot; Peak PM2.5 exposure recorded at Alipur, Delhi</div>
+    </section>
+
+    <!-- =========================================================================
+         4. ASYMMETRIC NARRATIVE SECTION (The "A History of Us" Equivalent)
+         ========================================================================= -->
+    <section class="dz-narrative-section" id="exposure">
+      <div class="dz-narrative-body">
+        <div class="dz-section-tag">A History of the Crisis</div>
+        <h2 class="dz-narrative-title">The Anatomy of Exposure</h2>
+        <p>At Signal Earth, our investigation began with an unyielding mandate: to dissect seven years of continuous ambient telemetry from Delhi's northern corridor. What the instruments recorded was not an occasional spike, but an enduring chronic baseline.</p>
+        <p>Measuring under 2.5 microns across, fine particulate matter (&thinsp;PM<sub>2.5</sub>&thinsp;) bypasses upper respiratory cilia, migrating past cellular barriers into pulmonary gas-exchange alveoli and entering systemic blood circulation. Over 62.6% of all monitored days breached national safety thresholds, while 78.8% violated acceptable air quality limits.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- =========================================================================
-       CHAPTER 03: THE SEASONS (Reference Image 2 & 5 - Parchment Light Editorial)
-       ========================================================================= -->
-  <section class="slide parchment-theme" id="ch-03">
-    <div class="container">
-      <div class="location-tag">Annual Climatology &middot; Synoptic Meterology</div>
-      
-      <h2 class="editorial-headline" style="max-width: 900px;">We experience the air one day at a time.<br>Decades placed side by side reveal the trap.</h2>
-      <div class="ochre-rule"></div>
-      <p class="editorial-lead" style="max-width: 850px;">A monsoon storm clears the haze. A cold front traps vehicle exhaust. A dry summer wind whips up crustal road dust. No single day reveals the transformation. But annual cycles placed side by side demonstrate how meteorology dictates the air quality cycle.</p>
+      <div class="dz-photo-accent-wrapper">
+        <img src="assets/delhi_iss_night.jpg" alt="NASA ISS nocturnal remote sensing of Delhi urban footprint under winter atmospheric inversion" class="dz-story-photo">
+        <div class="dz-accent-block"></div>
+      </div>
+    </section>
 
-      <div class="parchment-card" style="margin-top: 2rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:1.5rem;">
+    <!-- =========================================================================
+         5. WIDE PANORAMIC BREAK (The "Our Sustainable Journey" Equivalent)
+         ========================================================================= -->
+    <section class="dz-panorama-section" id="airshed">
+      <div class="dz-panorama-frame">
+        <img src="assets/himalaya_haze_panorama.jpg" alt="NASA Earth Observatory Satellite Panorama of Winter Haze Trapped Along the Himalayas">
+      </div>
+
+      <div class="dz-panorama-editorial">
+        <h2 class="dz-panorama-headline">The Airshed Knows No Borders</h2>
+        <div class="dz-panorama-text">
+          <p>Our investigation reveals that Delhi's crisis cannot be understood through city limits alone. Bounded by the towering Himalayan mountain barrier to the north, the entire Indo-Gangetic Basin functions as a single enclosed atmospheric bowl.</p>
+          <p style="margin-top: 1rem;">During post-monsoon and winter months, cold ground-level radiation inversions trap transboundary agricultural residue smoke, industrial emissions, and urban vehicular exhaust in a stagnant planetary boundary layer less than 300 meters above ground.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. MINIMALIST LUXURY DATA WIDGETS
+         ========================================================================= -->
+    <section class="dz-data-section" id="telemetry">
+      <div class="dz-section-tag" style="text-align: center; margin-bottom: 3rem;">Master Telemetry &middot; Empirical Analytics</div>
+
+      <!-- Widget 1: Master 7-Year AQI Trajectory -->
+      <div class="dz-widget-card">
+        <div class="dz-widget-header">
           <div>
-            <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-dark-headline);">Seasonal Distribution of Air Quality Index</h3>
-            <p style="font-size:0.85rem; color:var(--text-dark-muted);">Select a season to inspect empirical health category percentages and boundary layer dynamics.</p>
+            <h3 class="dz-widget-title">Continuous Multi-Year Atmospheric AQI Record</h3>
+            <p class="dz-widget-subtitle">Daily CPCB NAQI values with 7-day and 30-day moving momentum overlaid on regulatory threshold bands.</p>
           </div>
-          <div class="seasonal-pill-group" style="margin-bottom:0;">
-            <button class="season-btn active" data-season="All">All Seasons</button>
-            <button class="season-btn" data-season="Winter">Winter (Dec&ndash;Feb)</button>
-            <button class="season-btn" data-season="Summer">Summer (Mar&ndash;May)</button>
-            <button class="season-btn" data-season="Monsoon">Monsoon (Jun&ndash;Sep)</button>
-            <button class="season-btn" data-season="Post-Monsoon">Post-Monsoon (Oct&ndash;Nov)</button>
-          </div>
-        </div>
-
-        <div class="grid-2col">
-          <div id="chart-seasonal-box" class="plot-container" style="min-height: 400px;"></div>
-          <div id="chart-seasonal-stack" class="plot-container" style="min-height: 400px;"></div>
-        </div>
-      </div>
-
-      <div class="slide-footer-meta">
-        <span>Signal Earth &middot; Indian Meteorological Department Classification</span>
-        <span>03 / 08</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       CHAPTER 04: THE 7-YEAR TRAJECTORY (Master Interactive Timeline)
-       ========================================================================= -->
-  <section class="slide" id="ch-04">
-    <div class="container-wide">
-      <div class="location-tag">Master Air Quality Trajectory &middot; 2017&ndash;2023</div>
-      
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
-        <div>
-          <h2 class="editorial-headline" style="margin-bottom: 0.5rem;">Seven Years of Continuous Atmospheric Monitoring</h2>
-          <p class="editorial-lead" style="margin-bottom: 0;">Daily composite AQI with 7-day and 30-day moving momentum overlaid on regulatory CPCB health hazard bands.</p>
-        </div>
-        <div style="display: flex; gap: 0.5rem;" id="year-filter-container">
-          <button class="season-btn active" style="color:#fff; background:var(--bg-dark-card); border-color:var(--border-dark);" data-year="ALL">All Years</button>
-          <button class="season-btn" style="color:#fff; background:var(--bg-dark-card); border-color:var(--border-dark);" data-year="2018">2018</button>
-          <button class="season-btn" style="color:#fff; background:var(--bg-dark-card); border-color:var(--border-dark);" data-year="2021">2021</button>
-          <button class="season-btn" style="color:#fff; background:var(--bg-dark-card); border-color:var(--border-dark);" data-year="2022">2022</button>
-          <button class="season-btn" style="color:#fff; background:var(--bg-dark-card); border-color:var(--border-dark);" data-year="2023">2023</button>
-        </div>
-      </div>
-
-      <div class="chart-card">
-        <div id="chart-timeseries" class="plot-container plot-container-tall"></div>
-      </div>
-
-      <div class="slide-footer-meta">
-        <span>Piecewise Linear Breakpoints Evaluated per CPCB Schedule &middot; Alipur DPCC</span>
-        <span>04 / 08</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       CHAPTER 05: WHERE THE SMOKE BLOWS (Polar Wind Rose & Source Apportionment)
-       ========================================================================= -->
-  <section class="slide" id="ch-05">
-    <div class="container-wide">
-      <div class="location-tag">Atmospheric Transport &middot; Polar Trajectory Modeling</div>
-      
-      <div class="grid-2col" style="align-items: start;">
-        <div>
-          <h2 class="editorial-headline">The airshed knows no administrative borders.</h2>
-          <div class="ochre-rule"></div>
-          <p class="editorial-lead">By mapping continuous wind direction degrees across 16 cardinal sectors against multi-pollutant concentrations, we uncover the spatial fingerprints of incoming pollution corridors.</p>
-          
-          <div class="action-card" style="margin-top: 2rem; border-top-color: var(--accent-crimson);">
-            <h3 style="color: var(--accent-crimson);">Northwest Inflow Vector (300&deg; &ndash; 330&deg;)</h3>
-            <p>During post-monsoon and early winter, prevailing northwesterly winds transport regional crop residue combustion smoke directly from Punjab and Haryana into the capital basin, driving fine particle concentrations above 250 &micro;g/m&sup3;.</p>
-          </div>
-
-          <div class="action-card" style="margin-top: 1rem; border-top-color: var(--accent-cyan);">
-            <h3 style="color: var(--accent-cyan);">Southeast Vector (90&deg; &ndash; 140&deg;)</h3>
-            <p>Southeasterly winds exhibit elevated nitrogen dioxide (NO<sub>2</sub>) and sulfur dioxide (SO<sub>2</sub>) loading, pinpointing the signature of heavy diesel truck bypass corridors and industrial manufacturing clusters.</p>
+          <div class="dz-filter-pill-group" id="year-filter-group">
+            <button class="dz-filter-pill active" data-year="ALL">All Years</button>
+            <button class="dz-filter-pill" data-year="2018">2018</button>
+            <button class="dz-filter-pill" data-year="2021">2021</button>
+            <button class="dz-filter-pill" data-year="2022">2022</button>
+            <button class="dz-filter-pill" data-year="2023">2023</button>
           </div>
         </div>
+        <div id="chart-timeseries" style="width: 100%; min-height: 500px;"></div>
+      </div>
 
-        <div>
-          <div class="chart-card">
-            <div class="chart-header">
-              <div class="chart-title">Directional Particulate Pollution Rose</div>
-              <div class="chart-desc">Mean PM2.5 and PM10 concentration intensity across cardinal wind angles.</div>
+      <!-- Widget 2: Directional Polar Wind Rose & Source Attribution -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;" class="grid-dual">
+        <div class="dz-widget-card">
+          <div class="dz-widget-header">
+            <div>
+              <h3 class="dz-widget-title">Directional Particulate Rose</h3>
+              <p class="dz-widget-subtitle">Mean PM2.5 and PM10 concentration intensity across 16 cardinal angles.</p>
             </div>
-            <div id="chart-wind-rose" class="plot-container" style="min-height: 480px;"></div>
           </div>
-          
-          <div class="chart-card" style="margin-top: 1.5rem;">
-            <div class="chart-header">
-              <div class="chart-title">Empirical Source Regime Attribution</div>
-              <div class="chart-desc">Fraction of monitored days assigned to specific chemical emission drivers.</div>
+          <div id="chart-wind-rose" style="width: 100%; min-height: 440px;"></div>
+        </div>
+
+        <div class="dz-widget-card">
+          <div class="dz-widget-header">
+            <div>
+              <h3 class="dz-widget-title">Empirical Source Attribution</h3>
+              <p class="dz-widget-subtitle">Chemical diagnostic fingerprinting across monitored calendar days.</p>
             </div>
-            <div id="chart-source-pie" class="plot-container" style="min-height: 320px;"></div>
+          </div>
+          <div id="chart-source-pie" style="width: 100%; min-height: 440px;"></div>
+        </div>
+      </div>
+
+      <!-- Widget 3: Predictive Machine Learning Forecast Lab -->
+      <div class="dz-widget-card" id="forecast" style="margin-top: 3rem;">
+        <div class="dz-widget-header">
+          <div>
+            <h3 class="dz-widget-title">Predictive Machine Learning Lab &middot; 24-Hour Ahead Forecast</h3>
+            <p class="dz-widget-subtitle">Out-of-time prospective testing (Calendar Year 2023) evaluated across 61 engineered lag and meteorological features.</p>
           </div>
         </div>
-      </div>
 
-      <div class="slide-footer-meta">
-        <span>Polar Bivariate Analysis &middot; 16 Cardinal Sectors &middot; DPCC Alipur Sensor</span>
-        <span>05 / 08</span>
+        <!-- 4 KPI Boxes -->
+        <div class="dz-kpi-grid">
+          <div class="dz-kpi-box">
+            <div class="dz-kpi-num">0.769</div>
+            <div class="dz-kpi-desc">Test R&sup2; Score (2023)</div>
+          </div>
+          <div class="dz-kpi-box">
+            <div class="dz-kpi-num">54.98</div>
+            <div class="dz-kpi-desc">Root Mean Sq Error (RMSE)</div>
+          </div>
+          <div class="dz-kpi-box">
+            <div class="dz-kpi-num">39.69</div>
+            <div class="dz-kpi-desc">Mean Absolute Error (MAE)</div>
+          </div>
+          <div class="dz-kpi-box">
+            <div class="dz-kpi-num">62.2%</div>
+            <div class="dz-kpi-desc">Category Hit Rate</div>
+          </div>
+        </div>
+
+        <div id="chart-forecast-ts" style="width: 100%; min-height: 480px;"></div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- =========================================================================
-       CHAPTER 06: CHEMICAL FINGERPRINTING (Parchment Light Panel)
+       7. FOOTER & SOCIAL CONNECT
        ========================================================================= -->
-  <section class="slide parchment-theme" id="ch-06">
-    <div class="container">
-      <div class="location-tag">Aerosol &amp; Chemical Diagnostics &middot; BTEX Volatile Organics</div>
-      
-      <h2 class="editorial-headline">Tracing the Chemical Fingerprint of Delhi's Air</h2>
-      <div class="ochre-rule"></div>
-      <p class="editorial-lead">Not all pollution is created equal. The ratio between fine (&thinsp;PM<sub>2.5</sub>&thinsp;) and coarse (&thinsp;PM<sub>10</sub>&thinsp;) particles separates combustion aerosols from mechanical road dust, while volatile aromatic ratios identify traffic exhaust versus industrial solvent releases.</p>
-
-      <div class="grid-2col" style="margin-top: 2rem;">
-        <div class="parchment-card">
-          <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-dark-headline);">Fine Particle Fraction (&thinsp;PM<sub>2.5</sub> / PM<sub>10</sub>&thinsp;)</h3>
-          <p style="font-size: 0.85rem; color: var(--text-dark-muted); margin-bottom: 1.5rem;">Ratios &gt; 0.60 indicate secondary combustion smoke. Ratios &lt; 0.40 indicate coarse crustal road dust.</p>
-          <div id="chart-pm-ratio" class="plot-container" style="min-height: 380px;"></div>
-        </div>
-
-        <div class="parchment-card">
-          <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-dark-headline);">Volatile Aromatic Compounds (BTEX)</h3>
-          <p style="font-size: 0.85rem; color: var(--text-dark-muted); margin-bottom: 1.5rem;">Benzene is an established IARC Group 1 human carcinogen. 15.7% of monitored days violate safety standards.</p>
-          <div id="chart-btex" class="plot-container" style="min-height: 380px;"></div>
-        </div>
+  <footer class="dz-footer" id="downloads">
+    <div class="dz-footer-inner">
+      <div class="dz-footer-brand">
+        <h4>SIGNAL EARTH</h4>
+        <p>A computational public-health initiative transforming high-frequency atmospheric sensor streams and satellite remote sensing into actionable environmental intelligence.</p>
       </div>
 
-      <div class="slide-footer-meta">
-        <span>Signal Earth &middot; Gas Chromatography &amp; Photometric Flame Detection</span>
-        <span>06 / 08</span>
+      <div class="dz-footer-links-group">
+        <div class="dz-footer-col">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://www.instagram.com/signalearthhq/" target="_blank" rel="noopener noreferrer">Instagram (@signalearthhq)</a></li>
+            <li><a href="https://www.linkedin.com/company/signalearth/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer">LinkedIn (Signal Earth)</a></li>
+          </ul>
+        </div>
+
+        <div class="dz-footer-col">
+          <h5>Open Data Repository</h5>
+          <ul>
+            <li><a href="data/cleaned.json" download="delhi_air_quality_clean.json">Clean Dataset (JSON)</a></li>
+            <li><a href="../data/processed/air_quality_clean.csv" download="air_quality_clean.csv">Master Dataset (CSV)</a></li>
+            <li><a href="../reports/component_statistics.csv" download="component_statistics.csv">Component Statistics (CSV)</a></li>
+            <li><a href="../reports/air_quality_analysis_report.md" target="_blank">Full Scientific Report (MD)</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- =========================================================================
-       CHAPTER 07: FORECASTING TOMORROW'S AIR (AI Machine Learning Lab)
-       ========================================================================= -->
-  <section class="slide" id="ch-07">
-    <div class="container-wide">
-      <div class="location-tag">Predictive Machine Learning Lab &middot; 24-Hour Horizon</div>
-      
-      <h2 class="editorial-headline">Predicting the Unseen: Machine Learning Forecasting</h2>
-      <div class="ochre-rule"></div>
-      <p class="editorial-lead">Can we anticipate a catastrophic air crisis 24 hours before it engulfs the city? We trained supervised ensemble models using multi-day chronological pollutant lags, meteorological inertia, and solar harmonics.</p>
-
-      <!-- KPI Metric Strip -->
-      <div class="model-kpi-strip">
-        <div class="kpi-card">
-          <div class="kpi-val">0.769</div>
-          <div class="kpi-label">Test R&sup2; Score (2023)</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-val">54.98</div>
-          <div class="kpi-label">Root Mean Sq Error (RMSE)</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-val">39.69</div>
-          <div class="kpi-label">Mean Absolute Error (MAE)</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-val">62.2%</div>
-          <div class="kpi-label">Category Hit Accuracy</div>
-        </div>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-title">2023 Prospective Out-of-Time Forecast Validation</div>
-          <div class="chart-desc">Observed ground truth AQI (solid line) vs 24-hour ahead Random Forest predictions (dashed line).</div>
-        </div>
-        <div id="chart-forecast-ts" class="plot-container" style="min-height: 480px;"></div>
-      </div>
-
-      <div class="slide-footer-meta">
-        <span>Supervised Regression &middot; 61 Engineered Lag Features &middot; Scikit-Learn 1.9</span>
-        <span>07 / 08</span>
-      </div>
+    <div class="dz-bottom-bar">
+      <span>&copy; 2026 Signal Earth &middot; Alipur, Delhi DPCC Station Telemetry</span>
+      <span>Conducted in accordance with CPCB NAQI Guidelines</span>
     </div>
-  </section>
+  </footer>
 
-  <!-- =========================================================================
-       CHAPTER 08: THE ACTION MATRIX & DATA REPOSITORY
-       ========================================================================= -->
-  <section class="slide" id="ch-08">
-    <div class="container">
-      <div class="location-tag">Policy Interventions &middot; Open Data Repository</div>
-      
-      <h2 class="editorial-headline">From Empirical Evidence to Atmospheric Recovery</h2>
-      <div class="ochre-rule"></div>
-      <p class="editorial-lead">Data alone does not clean the air. The findings of this multi-year investigation demand targeted engineering interventions and proactive regulatory action.</p>
-
-      <div class="action-matrix-grid">
-        <div class="action-card" style="border-top-color: var(--aqi-severe);">
-          <h3>Tier 1: Emergency Episode Triggers (GRAP)</h3>
-          <p>Automated enforcement activated when 24-hr predictive models forecast AQI &gt; 300: immediate halt on diesel generators, mechanized street sweepers with water curtains, and diversion of interstate freight traffic.</p>
-        </div>
-        
-        <div class="action-card" style="border-top-color: var(--accent-amber);">
-          <h3>Tier 2: Industrial Solvent &amp; VOC Controls</h3>
-          <p>Address the 15.7% benzene exceedance rate and elevated T/B ratios by mandating closed-loop Vapor Recovery Systems (VRS) at all retail fuel outlets and coating solvent recovery in surrounding industrial zones.</p>
-        </div>
-
-        <div class="action-card" style="border-top-color: var(--accent-emerald);">
-          <h3>Tier 3: Sensor Pod Network Hardening</h3>
-          <p>Recommission unlogged meteorological pods (horizontal and vertical wind velocity) to enable Gaussian dispersion modeling and real-time chemical mass balance source apportionment.</p>
-        </div>
-      </div>
-
-      <!-- Data Export & Repository Links -->
-      <div style="background: var(--bg-dark-card); border: 1px solid var(--border-dark); border-radius: var(--radius-lg); padding: 2.5rem; margin-top: 2rem;">
-        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; color: #fff;">Access Open Analytical Assets</h3>
-        <p style="font-size: 0.9rem; color: var(--text-slate);">All standardized datasets, statistical summaries, publication-grade figures, and reproducible code are open for academic and public scrutiny.</p>
-        
-        <div class="repo-download-bar">
-          <a href="data/cleaned.json" download="delhi_air_quality_clean.json" class="btn-download btn-download-primary">Download Clean Dataset (JSON)</a>
-          <a href="../data/processed/air_quality_clean.csv" download="air_quality_clean.csv" class="btn-download">Download Full CSV Dataset</a>
-          <a href="../reports/component_statistics.csv" download="component_statistics.csv" class="btn-download">Download Component Statistics</a>
-          <a href="../reports/air_quality_analysis_report.md" target="_blank" class="btn-download">View Formal Scientific Report</a>
-        </div>
-      </div>
-
-      <div class="slide-footer-meta">
-        <span>Signal Earth Investigation &middot; Alipur DPCC Station Data (2017&ndash;2023)</span>
-        <span>08 / 08</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Editorial Javascript Logic -->
   <script src="app.js"></script>
 </body>
 </html>
