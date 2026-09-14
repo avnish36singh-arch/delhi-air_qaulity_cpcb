@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Air Quality Dashboard - Multi-year AQI analysis with CPCB standards">
+  <title>Air Quality Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-glow"></div>
+    <h1>🌬️ Air Quality Intelligence</h1>
+    <p class="subtitle">Multi-Year Environmental Monitoring &amp; CPCB AQI Analysis Dashboard</p>
+    <div class="stats-bar" id="stats-bar"></div>
+  </header>
+
+  <main>
+    <section class="card" id="section-timeseries">
+      <h2>📈 AQI Time Series</h2>
+      <p class="desc">Daily AQI with 7-day and 30-day rolling averages overlaid on CPCB health threshold bands.</p>
+      <div id="chart-timeseries" class="chart"></div>
+    </section>
+
+    <section class="card" id="section-seasonal">
+      <h2>🍂 Seasonal AQI Dynamics</h2>
+      <p class="desc">Distribution of AQI values across Indian meteorological seasons.</p>
+      <div class="grid-2">
+        <div id="chart-seasonal-box" class="chart"></div>
+        <div id="chart-seasonal-stack" class="chart"></div>
+      </div>
+    </section>
+
+    <section class="card" id="section-dominant">
+      <h2>🏭 Dominant Pollutants</h2>
+      <p class="desc">Which pollutant drives the AQI on any given day.</p>
+      <div class="grid-2">
+        <div id="chart-dom-pie" class="chart"></div>
+        <div id="chart-dom-season" class="chart"></div>
+      </div>
+    </section>
+
+    <section class="card" id="section-correlation">
+      <h2>🔗 24-Component Correlation Matrix</h2>
+      <p class="desc">Pearson correlations across all air quality and meteorological parameters.</p>
+      <div id="chart-corr" class="chart chart-tall"></div>
+    </section>
+
+    <section class="card" id="section-pm-btex">
+      <h2>🧪 PM Ratios &amp; BTEX Dynamics</h2>
+      <p class="desc">Fine particle fraction and volatile organic compound distributions.</p>
+      <div class="grid-2">
+        <div id="chart-pm-ratio" class="chart"></div>
+        <div id="chart-btex" class="chart"></div>
+      </div>
+    </section>
+
+    <section class="card" id="section-meteo">
+      <h2>🌡️ Meteorological Impact on AQI</h2>
+      <p class="desc">How temperature, wind, humidity, and solar radiation influence air quality.</p>
+      <div class="grid-2x2">
+        <div id="chart-met-temp" class="chart"></div>
+        <div id="chart-met-wind" class="chart"></div>
+        <div id="chart-met-rh" class="chart"></div>
+        <div id="chart-met-sr" class="chart"></div>
+      </div>
+    </section>
+
+    <section class="card" id="section-heatmap">
+      <h2>📅 Monthly AQI Heatmap</h2>
+      <p class="desc">Year × Month matrix showing average AQI trends.</p>
+      <div id="chart-heatmap" class="chart"></div>
+    </section>
+
+    <section class="card" id="section-sources">
+      <h2>🧭 Directional Wind Rose &amp; Source Apportionment</h2>
+      <p class="desc">Polar dispersion trajectories by wind direction and empirical emission source attribution.</p>
+      <div class="grid-2">
+        <div id="chart-wind-rose" class="chart"></div>
+        <div id="chart-source-pie" class="chart"></div>
+      </div>
+    </section>
+
+    <section class="card" id="section-forecast">
+      <h2>🤖 Predictive Machine Learning (24-Hour Ahead Forecast)</h2>
+      <p class="desc">Out-of-time prospective testing (Year 2023): Random Forest Model (R² = 0.77 | RMSE = 55.0 | MAE = 39.7).</p>
+      <div id="chart-forecast-ts" class="chart"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Data processed via CPCB NAQI standards • Built with Plotly.js</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
