@@ -86,8 +86,12 @@
       </div>
 
       <div class="dz-photo-accent-wrapper">
-        <img src="assets/delhi_iss_night.jpg" alt="NASA ISS nocturnal remote sensing of Delhi urban footprint under winter atmospheric inversion" class="dz-story-photo">
-        <div class="dz-accent-block"></div>
+        <img src="assets/delhi_iss_night.jpg" alt="NASA Space Station Earth Observation of the Himalayan Barrier and Glacial Ridges" class="dz-story-photo">
+        <div class="dz-accent-block">
+          <span class="dz-accent-chip">STATION LOG</span>
+          <span class="dz-accent-code">28°47′N · 77°08′E</span>
+          <span class="dz-accent-elev">ELEV 214M AMSL</span>
+        </div>
       </div>
     </section>
 
@@ -118,8 +122,13 @@
       <div class="dz-widget-card">
         <div class="dz-widget-header">
           <div>
+            <div class="dz-hud-status-row">
+              <span class="dz-beacon-live"></span>
+              <span class="dz-hud-badge">TELEMETRY STREAM · STATION ALIPUR-01</span>
+              <span class="dz-hud-coord">28.7997°N, 77.1332°E · ELEV 214M</span>
+            </div>
             <h3 class="dz-widget-title">Continuous Multi-Year Atmospheric AQI Record</h3>
-            <p class="dz-widget-subtitle">Daily CPCB NAQI values with 7-day and 30-day moving momentum overlaid on regulatory threshold bands.</p>
+            <p class="dz-widget-subtitle">Daily CPCB NAQI telemetry with 7-day and 30-day moving momentum overlaid on regulatory threshold markers.</p>
           </div>
           <div class="dz-filter-pill-group" id="year-filter-group">
             <button class="dz-filter-pill active" data-year="ALL">All Years</button>
@@ -129,7 +138,28 @@
             <button class="dz-filter-pill" data-year="2023">2023</button>
           </div>
         </div>
-        <div id="chart-timeseries" style="width: 100%; min-height: 500px;"></div>
+
+        <!-- Telemetry HUD KPI Strip -->
+        <div class="dz-telemetry-hud-strip">
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">PEAK PM2.5 CONCENTRATION</div>
+            <div class="dz-hud-strip-val text-cyan">529.0 µg/m³</div>
+          </div>
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">PEAK COMPUTED AQI</div>
+            <div class="dz-hud-strip-val text-rose">500.0 (HAZARDOUS)</div>
+          </div>
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">SAFETY THRESHOLD BREACH</div>
+            <div class="dz-hud-strip-val text-amber">62.6% OF ALL DAYS</div>
+          </div>
+          <div class="dz-hud-strip-item">
+            <div class="dz-hud-strip-label">WINTER INVERSION RATIO</div>
+            <div class="dz-hud-strip-val text-lime">3.4× BASELINE</div>
+          </div>
+        </div>
+
+        <div id="chart-timeseries" style="width: 100%; min-height: 520px;"></div>
       </div>
 
       <!-- Widget 2: Directional Polar Wind Rose & Source Attribution -->

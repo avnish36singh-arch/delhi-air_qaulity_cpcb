@@ -5,11 +5,19 @@
 
 const OBSIDIAN_LAYOUT = {
   paper_bgcolor: 'rgba(0,0,0,0)',
-  plot_bgcolor: 'rgba(9, 12, 16, 0.75)',
+  plot_bgcolor: 'rgba(0,0,0,0)',
   font: { family: 'Inter, system-ui, sans-serif', color: '#94a3b8', size: 12 },
   margin: { t: 40, r: 24, b: 45, l: 55 },
-  xaxis: { gridcolor: 'rgba(255, 255, 255, 0.06)', zerolinecolor: 'rgba(255, 255, 255, 0.06)' },
-  yaxis: { gridcolor: 'rgba(255, 255, 255, 0.06)', zerolinecolor: 'rgba(255, 255, 255, 0.06)' }
+  xaxis: { 
+    gridcolor: 'rgba(255, 255, 255, 0.04)', 
+    zerolinecolor: 'rgba(255, 255, 255, 0.08)',
+    tickfont: { size: 11, color: '#64748b' }
+  },
+  yaxis: { 
+    gridcolor: 'rgba(255, 255, 255, 0.04)', 
+    zerolinecolor: 'rgba(255, 255, 255, 0.08)',
+    tickfont: { size: 11, color: '#64748b' }
+  }
 };
 
 const CONFIG = {
@@ -80,37 +88,60 @@ function renderTimeSeries(data, selectedYear = 'ALL') {
       y: aqiVals,
       mode: 'markers',
       type: 'scatter',
-      name: 'Daily AQI',
-      marker: { color: '#475569', size: 4, opacity: 0.4 }
+      name: 'Daily Ambient AQI',
+      marker: { color: 'rgba(148, 163, 184, 0.35)', size: 3.5 },
+      hoverinfo: 'x+y'
     },
     {
       x: times,
       y: rolling7D,
       mode: 'lines',
-      name: '7-Day Rolling Average',
-      line: { color: '#38bdf8', width: 2 }
+      name: '7-Day Rolling Momentum',
+      line: { color: '#06b6d4', width: 2.2, shape: 'spline' },
+      fill: 'tozeroy',
+      fillcolor: 'rgba(6, 182, 212, 0.04)'
     },
     {
       x: times,
       y: rolling30D,
       mode: 'lines',
       name: '30-Day Seasonal Trendline',
-      line: { color: '#eab308', width: 2.8 }
+      line: { color: '#fbbf24', width: 2.8, shape: 'spline' }
     }
   ];
 
   const layout = {
     ...OBSIDIAN_LAYOUT,
     title: false,
-    yaxis: { ...OBSIDIAN_LAYOUT.yaxis, title: 'Air Quality Index (AQI)', range: [0, 540] },
-    legend: { orientation: 'h', y: 1.14, font: { size: 11, color: '#94a3b8' } },
+    yaxis: { 
+      ...OBSIDIAN_LAYOUT.yaxis, 
+      title: { text: 'Air Quality Index (AQI)', font: { size: 12, color: '#94a3b8' } }, 
+      range: [0, 540] 
+    },
+    legend: { 
+      orientation: 'h', 
+      y: 1.12, 
+      x: 0,
+      font: { size: 11, color: '#94a3b8', family: 'Inter' } 
+    },
+    hoverlabel: {
+      bgcolor: '#090d16',
+      bordercolor: 'rgba(255, 255, 255, 0.15)',
+      font: { family: 'Inter', color: '#ffffff', size: 12 }
+    },
     shapes: [
-      { type: 'rect', xref: 'paper', y0: 0, y1: 50, x0: 0, x1: 1, fillcolor: 'rgba(0, 153, 102, 0.1)', line: { width: 0 } },
-      { type: 'rect', xref: 'paper', y0: 50, y1: 100, x0: 0, x1: 1, fillcolor: 'rgba(132, 204, 22, 0.1)', line: { width: 0 } },
-      { type: 'rect', xref: 'paper', y0: 100, y1: 200, x0: 0, x1: 1, fillcolor: 'rgba(234, 179, 8, 0.1)', line: { width: 0 } },
-      { type: 'rect', xref: 'paper', y0: 200, y1: 300, x0: 0, x1: 1, fillcolor: 'rgba(249, 115, 22, 0.1)', line: { width: 0 } },
-      { type: 'rect', xref: 'paper', y0: 300, y1: 400, x0: 0, x1: 1, fillcolor: 'rgba(239, 68, 68, 0.1)', line: { width: 0 } },
-      { type: 'rect', xref: 'paper', y0: 400, y1: 600, x0: 0, x1: 1, fillcolor: 'rgba(126, 34, 206, 0.1)', line: { width: 0 } }
+      { type: 'line', xref: 'paper', x0: 0, x1: 1, y0: 50, y1: 50, line: { color: 'rgba(16, 185, 129, 0.22)', width: 1, dash: 'dot' } },
+      { type: 'line', xref: 'paper', x0: 0, x1: 1, y0: 100, y1: 100, line: { color: 'rgba(234, 179, 8, 0.22)', width: 1, dash: 'dot' } },
+      { type: 'line', xref: 'paper', x0: 0, x1: 1, y0: 200, y1: 200, line: { color: 'rgba(249, 115, 22, 0.28)', width: 1, dash: 'dot' } },
+      { type: 'line', xref: 'paper', x0: 0, x1: 1, y0: 300, y1: 300, line: { color: 'rgba(239, 68, 68, 0.32)', width: 1, dash: 'dot' } },
+      { type: 'line', xref: 'paper', x0: 0, x1: 1, y0: 400, y1: 400, line: { color: 'rgba(168, 85, 247, 0.4)', width: 1.2, dash: 'dash' } }
+    ],
+    annotations: [
+      { xref: 'paper', yref: 'y', x: 0.995, y: 415, text: 'SEVERE (400+)', showarrow: false, font: { size: 9, color: 'rgba(239, 68, 68, 0.7)', family: 'monospace' }, xanchor: 'right' },
+      { xref: 'paper', yref: 'y', x: 0.995, y: 315, text: 'VERY POOR (300+)', showarrow: false, font: { size: 9, color: 'rgba(249, 115, 22, 0.7)', family: 'monospace' }, xanchor: 'right' },
+      { xref: 'paper', yref: 'y', x: 0.995, y: 215, text: 'POOR (200+)', showarrow: false, font: { size: 9, color: 'rgba(234, 179, 8, 0.7)', family: 'monospace' }, xanchor: 'right' },
+      { xref: 'paper', yref: 'y', x: 0.995, y: 115, text: 'MODERATE (100+)', showarrow: false, font: { size: 9, color: 'rgba(250, 204, 21, 0.7)', family: 'monospace' }, xanchor: 'right' },
+      { xref: 'paper', yref: 'y', x: 0.995, y: 60, text: 'SATISFACTORY (50)', showarrow: false, font: { size: 9, color: 'rgba(16, 185, 129, 0.7)', family: 'monospace' }, xanchor: 'right' }
     ]
   };
 
