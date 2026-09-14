@@ -123,5 +123,14 @@ Then navigate to `http://localhost:8000` in your web browser.
 ├── main_pipeline.py         # Master pipeline orchestrator
 ├── test.py                  # Automated unit test suite
 ├── requirements.txt         # Project dependencies
+├── LICENSE                  # MIT License
 └── README.md                # Project documentation
 ```
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for full details.  
+Copyright (c) 2026 **avnish36singh-arch**.
+
