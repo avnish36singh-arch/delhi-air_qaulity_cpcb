@@ -21,6 +21,10 @@
       <li><a href="../about.html">About</a></li>
       <li><a href="kanpur.html" class="active">Kanpur</a></li>
       <li><a href="delhi.html">Delhi</a></li>
+      <li><a href="kanpur-lst.html">Kanpur LST</a></li>
+      <li><a href="comparison.html">Comparison</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../citations.html">Citations</a></li>
       <li><a href="../dispatches.html">Dispatches</a></li>
       <li><a href="../contact.html">Contact</a></li>
     </ul>
@@ -198,14 +202,74 @@
         </p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
           <a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer" class="se-link" style="font-size: 0.9rem;">
-            View Kanpur Repository on GitHub &rarr;
-          </a>
-          <a href="../data/kanpur/daily_aggregated.csv" download="kanpur_daily_aggregated.csv" class="se-link se-link-secondary" style="font-size: 0.9rem;">
-            Download Cleaned Daily Data (CSV) &rarr;
-          </a>
+    <!-- Content Sections -->
+    <div style="display: flex; flex-direction: column; gap: 4rem;">
+
+      <!-- Section 1: Overview -->
+      <section>
+        <span class="section-kicker">01 &middot; Executive Summary</span>
+        <h2 class="editorial-headline" style="font-size: 1.8rem; margin-bottom: 1rem;">The Atmospheric Baseline</h2>
+        <div class="se-report-content" style="color: #CBD5E1; line-height: 1.8; font-size: 1.05rem;">
+          <p>
+            Kanpur, situated in the heart of the Indo-Gangetic Plain, experiences severe seasonal shifts in ambient particulate matter concentrations. Analysis of continuous telemetry from the NSI Kalyanpur and Nehru Nagar stations confirms that particulate loading is heavily modulated by seasonal meteorological patterns.
+          </p>
+          <p>
+            During the winter months (November to January), ground-level PM<sub>2.5</sub> concentrations surge dramatically, frequently exceeding the national 24-hour standard of 60 &micro;g/m&sup3; by a factor of 4 to 5. Conversely, during the southwest monsoon (July to September), wet deposition significantly clears the ambient column, bringing particulate concentrations to their annual minimums.
+          </p>
         </div>
-      </div>
-    </article>
+      </section>
+
+      <!-- Section 2: Visualizations -->
+      <section>
+        <span class="section-kicker">02 &middot; Primary Evidence</span>
+        <h2 class="editorial-headline" style="font-size: 1.8rem; margin-bottom: 1.5rem;">Analytical Visualizations</h2>
+
+        <div style="display: flex; flex-direction: column; gap: 3rem;">
+          <!-- Figure 1 -->
+          <div>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin-bottom: 0.75rem;">Figure 1: Particulate Matter Time Series &amp; Regulatory Thresholds</h3>
+            <img src="../assets/kanpur/01_timeseries.png" alt="Kanpur PM2.5 and PM10 Time Series" style="width: 100%; border-radius: 4px; border: 1px solid var(--border-subtle); display: block; margin-bottom: 0.5rem;" loading="lazy">
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Daily average concentrations of PM2.5 and PM10 across both monitoring stations, highlighting sustained winter exceedances above NAAQS limits.</span>
+          </div>
+
+          <!-- Figure 2 -->
+          <div>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin-bottom: 0.75rem;">Figure 2: Monthly Average Trends &amp; Seasonal Multipliers</h3>
+            <img src="../assets/kanpur/02_monthly.png" alt="Kanpur Monthly Average Trends" style="width: 100%; border-radius: 4px; border: 1px solid var(--border-subtle); display: block; margin-bottom: 0.5rem;" loading="lazy">
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Monthly mean particulate concentrations illustrating the five-fold jump between monsoon baseline and winter peak.</span>
+          </div>
+
+          <!-- Figure 3 -->
+          <div>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin-bottom: 0.75rem;">Figure 3: Station Comparison (NSI Kalyanpur vs. Nehru Nagar)</h3>
+            <img src="../assets/kanpur/03_station_comparison.png" alt="Kanpur Station Comparison" style="width: 100%; border-radius: 4px; border: 1px solid var(--border-subtle); display: block; margin-bottom: 0.5rem;" loading="lazy">
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Side-by-side distribution comparison showing variations driven by localized micro-environments and proximity to major roadways.</span>
+          </div>
+
+          <!-- Figure 4 -->
+          <div>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin-bottom: 0.75rem;">Figure 4: Weather Correlations &amp; Inversion Drivers</h3>
+            <img src="../assets/kanpur/04_weather_correlation.png" alt="Kanpur Weather Correlations" style="width: 100%; border-radius: 4px; border: 1px solid var(--border-subtle); display: block; margin-bottom: 0.5rem;" loading="lazy">
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Correlation heatmap demonstrating strong negative association between boundary-layer temperature, wind speed, and particulate accumulation.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Data Pipeline & Integrity -->
+      <section>
+        <span class="section-kicker">03 &middot; Data Integrity &amp; Transparency</span>
+        <h2 class="editorial-headline" style="font-size: 1.8rem; margin-bottom: 1rem;">Pipeline Integrity &amp; Missing Intervals</h2>
+        <div class="se-report-content" style="color: #CBD5E1; line-height: 1.8; font-size: 1.05rem;">
+          <p>
+            The telemetry presented here was pulled directly from the OpenAQ v3 API, reflecting public feeds from CPCB and UPPCB. Monitoring gaps exist between late 2022 and early 2025 due to station sensor maintenance and OpenAQ ingestion interruptions.
+          </p>
+          <p>
+            In keeping with Signal Earth's commitment to methodological honesty, no interpolation or synthetic values were used to bridge these multi-year gaps. The analysis treats each continuous monitoring period independently to prevent artificial smoothing of the seasonal cycles.
+          </p>
+        </div>
+      </section>
+
+    </div>
   </main>
 
   <!-- Footer -->
@@ -222,16 +286,18 @@
           <ul>
             <li><a href="kanpur.html">Kanpur Air Quality</a></li>
             <li><a href="delhi.html">Delhi Air Quality</a></li>
+            <li><a href="kanpur-lst.html">Kanpur LST &amp; GIS</a></li>
+            <li><a href="comparison.html">Cross-City Comparison</a></li>
             <li><a href="../dispatches.html">Research Dispatches</a></li>
           </ul>
         </div>
 
         <div class="se-footer-col">
-          <h5>Source Code</h5>
+          <h5>Documentation</h5>
           <ul>
-            <li><a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer">Kanpur GitHub Repo</a></li>
-            <li><a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer">Delhi GitHub Repo</a></li>
-            <li><a href="../about.html">Methodology &amp; Standards</a></li>
+            <li><a href="../methodology.html">Methodology &amp; Limits</a></li>
+            <li><a href="../citations.html">Data Sources &amp; Citations</a></li>
+            <li><a href="../about.html">About &amp; Standards</a></li>
           </ul>
         </div>
 
@@ -247,7 +313,7 @@
 
       <div class="se-footer-bottom">
         <span>Signal Earth &middot; Avnish Singh &middot; HBTU Kanpur</span>
-        <span>Data: CPCB, UPPCB &middot; MIT License</span>
+        <span>Data: CPCB, UPPCB, NASA &middot; MIT License</span>
       </div>
     </div>
   </footer>

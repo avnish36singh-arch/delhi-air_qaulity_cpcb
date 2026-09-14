@@ -94,18 +94,20 @@ body {
 
 .se-nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.25rem;
   list-style: none;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .se-nav-links a {
   text-decoration: none;
   color: var(--text-secondary);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   transition: color 0.15s ease;
+  white-space: nowrap;
 }
 
 .se-nav-links a:hover,

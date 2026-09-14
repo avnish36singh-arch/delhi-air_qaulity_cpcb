@@ -21,6 +21,10 @@
       <li><a href="about.html" class="active">About</a></li>
       <li><a href="investigations/kanpur.html">Kanpur</a></li>
       <li><a href="investigations/delhi.html">Delhi</a></li>
+      <li><a href="investigations/kanpur-lst.html">Kanpur LST</a></li>
+      <li><a href="investigations/comparison.html">Comparison</a></li>
+      <li><a href="methodology.html">Methodology</a></li>
+      <li><a href="citations.html">Citations</a></li>
       <li><a href="dispatches.html">Dispatches</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -46,7 +50,7 @@
         Signal Earth is not an institution, research lab, or non-profit organization. There is no advisory board or corporate structure behind it; the analyses, pipelines, and visualizations presented here are the individual work of one engineering student working with open regulatory data.
       </p>
       <p>
-        The objective is straightforward: to parse publicly available environmental records—such as continuous ambient air quality stations operated by the Central Pollution Control Board (CPCB), the Uttar Pradesh Pollution Control Board (UPPCB), and the Delhi Pollution Control Committee (DPCC)—using reproducible Python data pipelines, and to communicate the findings with scientific precision and complete transparency.
+        The objective is straightforward: to parse publicly available environmental records—such as continuous ambient air quality stations operated by the Central Pollution Control Board (CPCB), the Uttar Pradesh Pollution Control Board (UPPCB), and the Delhi Pollution Control Committee (DPCC), alongside NASA earth observation feeds—using reproducible Python data pipelines, and to communicate the findings with scientific precision and complete transparency.
       </p>
 
       <h2 class="editorial-headline" style="font-size: 1.8rem; margin-top: 1.5rem; color: #FFFFFF;">Methodology &amp; Standards</h2>
@@ -58,23 +62,19 @@
           <strong>CPCB National Air Quality Index (NAQI) Protocol:</strong> In accordance with the 2014 CPCB standard, a valid daily AQI calculation requires at least three criteria pollutants, of which at least one must be PM<sub>2.5</sub> or PM<sub>10</sub>, with each parameter possessing sufficient hourly completeness. Sub-indices are calculated using linear piece-wise interpolation across calibrated breakpoint concentrations.
         </li>
         <li>
-          <strong>Official vs. Indicative AQI Distinction:</strong> The pipeline strictly tags days meeting the complete 3-pollutant threshold as official regulatory values. Days with insufficient parameter coverage are flagged as indicative or left as unmonitored nulls rather than masked with synthetic numbers.
+          <strong>Machine Learning Validation:</strong> Models are trained on historical records and tested strictly out-of-time (e.g., training on pre-2023 data, testing on unobserved 2023 calendar data) to evaluate true physical forecasting generalization rather than memorization.
         </li>
         <li>
-          <strong>Handling Data Gaps Honestly:</strong> Station sensors frequently undergo calibration downtime or hardware outages. In our pipelines, timeline gaps (such as the 2019–2020 monitoring pause in Alipur or the 2022–2025 sensor transition gap in Kanpur) are left explicit as missing intervals, avoiding flat-line interpolations across unmonitored periods.
+          <strong>Scientific Integrity:</strong> Detailed mathematical derivations, validity thresholds, sensor hiatuses, and ratio diagnostic definitions are documented in full on our dedicated <a href="methodology.html" style="color: var(--data-cyan);">Methodology &amp; Limitations</a> page.
         </li>
       </ul>
 
-      <h2 class="editorial-headline" style="font-size: 1.8rem; margin-top: 1.5rem; color: #FFFFFF;">Open Code &amp; Citations</h2>
-      <p>
-        Every chart, table, and statistical summary on this site is paired with links to its open-source repository on GitHub. Researchers and readers are encouraged to inspect the notebooks, verify data cleaning steps, and reproduce results locally.
-      </p>
-
-      <div style="margin-top: 2rem; padding: 2rem; background: var(--bg-surface); border: 1px solid var(--border-subtle);">
-        <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.75rem;">PRIMARY CODE REPOSITORIES</div>
+      <div style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 4px;">
+        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #FFFFFF;">Open Source Repositories</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">All raw and processed data, automated pipelines, visualization notebooks, and web applications are open source under the MIT license:</p>
         <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem;">
-          <li>&rarr; Kanpur Analysis: <a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer" style="color: var(--data-cyan);">github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur</a></li>
-          <li>&rarr; Delhi Analysis: <a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer" style="color: var(--data-cyan);">github.com/avnish36singh-arch/delhi-air_qaulity_cpcb</a></li>
+          <li>&rarr; Kanpur Analysis &amp; LST GIS: <a href="https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur" target="_blank" rel="noopener noreferrer" style="color: var(--data-cyan);">github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur</a></li>
+          <li>&rarr; Delhi Telemetry &amp; NAQI Pipeline: <a href="https://github.com/avnish36singh-arch/delhi-air_qaulity_cpcb" target="_blank" rel="noopener noreferrer" style="color: var(--data-cyan);">github.com/avnish36singh-arch/delhi-air_qaulity_cpcb</a></li>
         </ul>
       </div>
     </div>
@@ -94,7 +94,18 @@
           <ul>
             <li><a href="investigations/kanpur.html">Kanpur Air Quality</a></li>
             <li><a href="investigations/delhi.html">Delhi Air Quality</a></li>
+            <li><a href="investigations/kanpur-lst.html">Kanpur LST &amp; GIS</a></li>
+            <li><a href="investigations/comparison.html">Cross-City Comparison</a></li>
             <li><a href="dispatches.html">Research Dispatches</a></li>
+          </ul>
+        </div>
+
+        <div class="se-footer-col">
+          <h5>Documentation</h5>
+          <ul>
+            <li><a href="methodology.html">Methodology &amp; Limits</a></li>
+            <li><a href="citations.html">Data Sources &amp; Citations</a></li>
+            <li><a href="about.html">About &amp; Standards</a></li>
           </ul>
         </div>
 
@@ -110,7 +121,7 @@
 
       <div class="se-footer-bottom">
         <span>Signal Earth &middot; Avnish Singh &middot; HBTU Kanpur</span>
-        <span>Data: CPCB, UPPCB, DPCC &middot; MIT License</span>
+        <span>Data: CPCB, UPPCB, DPCC, NASA &middot; MIT License</span>
       </div>
     </div>
   </footer>
