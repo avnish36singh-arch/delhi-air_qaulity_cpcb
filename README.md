@@ -6,13 +6,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![CPCB NAQI 2014](https://img.shields.io/badge/Standard-CPCB%20NAQI%202014-green.svg)](https://cpcb.nic.in)
-[![Signal Earth Platform](https://img.shields.io/badge/Platform-Signal%20Earth-cyan.svg)](web/index.html)
+[![Testing](https://img.shields.io/badge/Tests-Passing%20(9%2F9)-brightgreen.svg)](test.py)
 
 > **Part of the Signal Earth Environmental Research Suite**  
 > • **Delhi NCR Atmospheric Telemetry & NAQI Pipeline** (This Repository)  
 > • **[Kanpur Particulate Dynamics & Station Telemetry](https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur)**  
 > • **[Kanpur Land Surface Temperature (LST) & QGIS Spatial Analysis](https://github.com/avnish36singh-arch/Kanpur-LST-Thermal-Analysis-GIS)**  
-> • **[Signal Earth Public Portal & Methodology Documentation](web/index.html)**
+> • **[Signal Earth Web Observatory & Portal](https://github.com/avnish36singh-arch/signal-earth-portal)**
 
 ---
 
@@ -37,9 +37,8 @@ flowchart TD
     F --> I["Stage 6: Predictive ML Forecasting<br/>(pipeline/forecasting.py -> 08_forecast)"]
     F --> J["Stage 7: Source Apportionment & Wind Roses<br/>(pipeline/source_apportionment.py -> 09_roses)"]
     
-    F --> K["Data Export: Synchronized Dashboard Feed<br/>(outputs/data/cleaned.json)"]
-    K --> L["Interactive Plotly.js Web Console<br/>(web/index.html & app.js)"]
-    G & I & J --> M["Scientific Analytical Report<br/>(reports/air_quality_analysis_report.md)"]
+    F --> K["Master Analytical Export<br/>(outputs/data/cleaned.json)"]
+    G & I & J & K --> M["Scientific Analytical Report<br/>(reports/air_quality_analysis_report.md)"]
 ```
 
 ---
@@ -263,17 +262,16 @@ python test.py
 ```
 
 ### 3. Run the Master Analytics Pipeline
-Execute the complete 7-stage master pipeline (Data Ingestion -> Preprocessing -> NAQI Calculation -> Statistical Profiling -> Publication Visualizations -> ML Forecasting -> Source Apportionment -> Web Dashboard Sync):
+Execute the complete end-to-end master pipeline (Data Ingestion -> Preprocessing -> NAQI Calculation -> Statistical Profiling -> Publication Visualizations -> ML Forecasting -> Source Apportionment -> Analytical Export):
 ```bash
 python main_pipeline.py
 ```
 
-### 4. Serve the Interactive Web Console
-Launch the local web server to inspect interactive Plotly time-series, wind roses, and correlation models:
-```bash
-python -m http.server 8000 --directory web
-```
-Open `http://localhost:8000` in any modern web browser.
+### 4. Inspect Visualizations and Scientific Reports
+All generated figures and tables are stored locally in high-resolution format:
+- **Plots & Figures**: Review `outputs/plots/` for Figures 01 through 09 (`01_aqi_time_series.png`, `08_forecast_evaluation.png`, `09_wind_rose_and_sources.png`, etc.).
+- **Analytical Data Feed**: Inspect `outputs/data/cleaned.json` and `data/processed/air_quality_clean.csv`.
+- **Scientific Report**: Review `reports/air_quality_analysis_report.md` and statistical breakdown in `reports/component_statistics.csv`.
 
 ---
 
@@ -287,7 +285,7 @@ Open `http://localhost:8000` in any modern web browser.
 │   ├── raw/                           # Heterogeneous multi-year station monitoring CSVs (2017-2023)
 │   └── processed/                     # Staged and clean harmonized datasets with computed CPCB NAQI
 ├── outputs/
-│   ├── data/                          # Synchronized JSON feed (cleaned.json)
+│   ├── data/                          # Master analytical dataset in JSON format (cleaned.json)
 │   └── plots/                         # Nine 300-DPI publication figures (01 to 09)
 ├── pipeline/
 │   ├── data_ingestion.py              # Multi-year schema normalization and datetime parser
@@ -299,12 +297,6 @@ Open `http://localhost:8000` in any modern web browser.
 ├── reports/
 │   ├── air_quality_analysis_report.md # Comprehensive 10-section formal scientific analytical report
 │   └── component_statistics.csv        # Summary parametric and non-parametric statistics (24 components)
-├── web/
-│   ├── data/
-│   │   └── cleaned.json               # Self-contained dashboard dataset (enables GitHub Pages hosting)
-│   ├── index.html                     # Responsive dark-mode dashboard interface
-│   ├── app.js                         # Plotly.js visualization and data binding controller
-│   └── style.css                      # Modern CSS design system
 ├── main_pipeline.py                   # Master pipeline execution script
 ├── test.py                            # Automated unit testing suite
 ├── requirements.txt                   # Formal package dependency manifest
