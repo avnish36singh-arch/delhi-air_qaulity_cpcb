@@ -26,9 +26,15 @@ AQI_CATEGORY_COLORS = {
 
 def plot_aqi_time_series(df, output_path):
     """Plots multi-year daily AQI with moving averages and CPCB category threshold bands."""
-    plot_df = df[df['AQI'].notna()].copy()
+    plot_df = df.copy()
+    plot_df['Timestamp'] = pd.to_datetime(plot_df['Timestamp'])
+    plot_df = plot_df.sort_values('Timestamp').drop_duplicates(subset=['Timestamp'])
+    plot_df = plot_df.set_index('Timestamp').asfreq('D')
+    
+    # Calculate rolling averages over daily frequency (will be NaN during missing multi-year periods)
     plot_df['Rolling_7D'] = plot_df['AQI'].rolling(7, min_periods=1).mean()
     plot_df['Rolling_30D'] = plot_df['AQI'].rolling(30, min_periods=1).mean()
+    plot_df = plot_df.reset_index()
 
     fig, ax = plt.subplots(figsize=(16, 7), dpi=300)
 
@@ -41,7 +47,8 @@ def plot_aqi_time_series(df, output_path):
     ax.axhspan(400, 600, color='#7E22CE', alpha=0.12, label='Severe (401+)')
 
     # Daily AQI points and trendlines
-    ax.scatter(plot_df['Timestamp'], plot_df['AQI'], color='#475569', alpha=0.35, s=16, label='Daily AQI')
+    valid_pts = plot_df[plot_df['AQI'].notna()]
+    ax.scatter(valid_pts['Timestamp'], valid_pts['AQI'], color='#475569', alpha=0.35, s=16, label='Daily AQI')
     ax.plot(plot_df['Timestamp'], plot_df['Rolling_7D'], color='#2563EB', linewidth=1.8, label='7-Day Rolling Avg')
     ax.plot(plot_df['Timestamp'], plot_df['Rolling_30D'], color='#DC2626', linewidth=2.4, label='30-Day Trendline')
 
@@ -57,23 +64,22 @@ def plot_aqi_time_series(df, output_path):
     print(f"Saved: {output_path}")
 
 def plot_correlation_heatmap(df, output_path):
-    """Plots a 24x24 correlation matrix across all chemical and meteorological components."""
+    """Plots a 19x19 correlation matrix across all chemical and meteorological components with valid data."""
     components = [
         "PM2.5", "PM10", "NO", "NO2", "NOx", "NH3", "SO2", "CO", "Ozone",
-        "Benzene", "Toluene", "Xylene", "O_Xylene", "Eth_Benzene", "MP_Xylene",
-        "AT", "RH", "WS", "WD", "RF", "TOT_RF", "SR", "BP", "VWS"
+        "Benzene", "Toluene", "Xylene", "AT", "RH", "WD", "RF", "TOT_RF", "SR", "BP"
     ]
     corr = df[components].corr()
 
-    fig, ax = plt.subplots(figsize=(18, 14), dpi=300)
+    fig, ax = plt.subplots(figsize=(16, 13), dpi=300)
     mask = np.triu(np.ones_like(corr, dtype=bool))
     
     cmap = sns.diverging_palette(230, 20, as_cmap=True)
     sns.heatmap(corr, mask=mask, cmap=cmap, vmin=-1.0, vmax=1.0, center=0,
                 square=True, linewidths=0.6, cbar_kws={"shrink": 0.75, "label": "Pearson Correlation Coefficient"},
-                annot=True, fmt=".2f", annot_kws={"size": 7.5}, ax=ax)
+                annot=True, fmt=".2f", annot_kws={"size": 8.5}, ax=ax)
 
-    ax.set_title("Inter-Component Correlation Matrix: 24 Air Quality & Meteorological Factors", fontsize=16, fontweight='bold', pad=20)
+    ax.set_title("Inter-Component Correlation Matrix: 19 Air Quality & Meteorological Factors", fontsize=16, fontweight='bold', pad=20)
     plt.tight_layout()
     plt.savefig(output_path, dpi=300)
     plt.close()
@@ -190,10 +196,10 @@ def plot_meteorology_impact(df, output_path):
     axes[0, 0].set_xlabel("Ambient Temperature (°C)")
     axes[0, 0].set_ylabel("AQI")
 
-    # 2. Wind Speed vs AQI
-    sns.regplot(data=plot_df, x='WS', y='AQI', ax=axes[0, 1], scatter_kws={'alpha': 0.3, 'color': '#16A34A'}, line_kws={'color': '#DC2626'})
-    axes[0, 1].set_title("Wind Speed vs AQI (Ventilation & Dispersion)", fontsize=13, fontweight='bold')
-    axes[0, 1].set_xlabel("Wind Speed (m/s)")
+    # 2. Barometric Pressure vs AQI
+    sns.regplot(data=plot_df[plot_df['BP'].notna()], x='BP', y='AQI', ax=axes[0, 1], scatter_kws={'alpha': 0.3, 'color': '#16A34A'}, line_kws={'color': '#DC2626'})
+    axes[0, 1].set_title("Barometric Pressure vs AQI (Atmospheric Stability)", fontsize=13, fontweight='bold')
+    axes[0, 1].set_xlabel("Barometric Pressure (hPa)")
     axes[0, 1].set_ylabel("AQI")
 
     # 3. Relative Humidity vs AQI
@@ -235,6 +241,7 @@ def generate_all_visualizations(df, output_dir):
     """Orchestrates creation of all visual assets."""
     os.makedirs(output_dir, exist_ok=True)
     plot_aqi_time_series(df, os.path.join(output_dir, "01_aqi_time_series.png"))
+    plot_correlation_heatmap(df, os.path.join(output_dir, "02_correlation_matrix_19_components.png"))
     plot_correlation_heatmap(df, os.path.join(output_dir, "02_correlation_matrix_24_components.png"))
     plot_seasonal_aqi_dynamics(df, os.path.join(output_dir, "03_seasonal_aqi_dynamics.png"))
     plot_dominant_pollutants(df, os.path.join(output_dir, "04_dominant_pollutants.png"))

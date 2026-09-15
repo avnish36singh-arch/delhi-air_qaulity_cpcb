@@ -308,7 +308,7 @@ Methodology: Regimes are classified via fine-to-coarse particulate ratios ($PM_{
 All publication-grade visual charts generated at 300 DPI are located in `outputs/plots/`:
 
 1. `outputs/plots/01_aqi_time_series.png`: Multi-Year Daily AQI Timeline with CPCB Health Bands & Rolling 30-day Trajectory.
-2. `outputs/plots/02_correlation_matrix_24_components.png`: Full Pearson Correlation Heatmap across all 24 parameters.
+2. `outputs/plots/02_correlation_matrix_19_components.png`: Full Pearson Correlation Heatmap across 19 validated parameters (unmonitored components with 100% missing values trimmed).
 3. `outputs/plots/03_seasonal_aqi_dynamics.png`: Seasonal Boxplots and Violin Density Distributions across Seasons.
 4. `outputs/plots/04_dominant_pollutants.png`: Pie and Bar Distribution of Primary Driving Pollutants.
 5. `outputs/plots/05_pm_and_btex_dynamics.png`: Particulate Ratios ($PM_{2.5}/PM_{10}$) & BTEX Volatile Aromatic Trends.

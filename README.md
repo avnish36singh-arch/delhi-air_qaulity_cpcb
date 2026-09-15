@@ -11,7 +11,6 @@
 > **Part of the Signal Earth Environmental Research Suite**  
 > • **Delhi NCR Atmospheric Telemetry & NAQI Pipeline** (This Repository)  
 > • **[Kanpur Particulate Dynamics & Station Telemetry](https://github.com/avnish36singh-arch/Air-Quality-Analysis-Kanpur)**  
-> • **[Kanpur Land Surface Temperature (LST) & QGIS Spatial Analysis](https://github.com/avnish36singh-arch/Kanpur-LST-Thermal-Analysis-GIS)**  
 > • **[Signal Earth Web Observatory & Portal](https://github.com/avnish36singh-arch/signal-earth-portal)**
 
 ---
@@ -19,6 +18,16 @@
 ## Abstract
 
 This repository presents an end-to-end computational and analytical platform for ambient air quality assessment across five calendar years (2017, 2018, 2021, 2022, and 2023), encompassing 1,825 continuous daily monitoring records and 24 chemical and meteorological parameters. The system integrates automated data ingestion and schema harmonization, implements official piecewise linear interpolation for CPCB National Air Quality Index (NAQI) calculation, evaluates regulatory compliance against National Ambient Air Quality Standards (NAAQS), applies diagnostic ratios for chemical source fingerprinting, executes directional wind rose polar dispersion modeling, and evaluates a supervised machine learning architecture for 24-hour ahead AQI forecasting.
+
+### Results at a Glance
+
+| Empirical Metric | Quantitative Value | Regulatory & Environmental Significance |
+| :--- | :---: | :--- |
+| **Observation Window** | **1,825 Days** (5 Years) | 2017–2018, 2021–2023 daily telemetry; 1,137 CPCB statutory valid days |
+| **Mean Composite AQI** | **$221.00 \pm 122.98$** | Airshed baseline classifies in the **Poor** health band (CPCB Category 4) |
+| **Non-Compliant / Unhealthy Days** | **78.80%** (896 days) | Exceed acceptable threshold ($\text{AQI} > 100$); **36.15%** (411 days) in **Very Poor / Severe** |
+| **Primary Dominant Drivers** | **$\text{PM}_{2.5}$ (51.8%) & $\text{PM}_{10}$ (43.4%)** | Particulate fractions trigger **95.2%** of all maximum daily AQI determinations |
+| **24-hr Predictive Forecast** | **$R^2 = 0.769$** ($\text{RMSE} = 54.98$) | Out-of-time prospective testing on 2023 (Random Forest Regressor, 61 features) |
 
 ---
 
@@ -130,9 +139,9 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 
 ---
 
-### Figure 2: Pearson Correlation Matrix Across All 24 Parameters
+### Figure 2: Pearson Correlation Matrix Across 19 Monitored Parameters
 
-![24-Component Correlation Matrix](outputs/plots/02_correlation_matrix_24_components.png)
+![19-Component Correlation Matrix](outputs/plots/02_correlation_matrix_19_components.png)
 
 #### Technical Interpretation
 - **Particulate Coupling**: $\text{PM}_{2.5}$ and $\text{PM}_{10}$ demonstrate exceptionally high collinearity ($r = 0.887$), confirming common emission origins (fossil fuel combustion, biomass burning, and resuspended road dust) and synchronized atmospheric transport.
@@ -148,7 +157,7 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 #### Technical Interpretation
 - **Seasonal Polarity**: Striking bimodal seasonal distribution between monsoon scavenging and winter trapping.
 - **Monsoon Baseline**: Median AQI during monsoon drops to $78.5$ (Satisfactory), driven by convective planetary boundary layer expansion and recurring wet precipitation washout.
-- **Winter Crisis**: Post-monsoon and winter seasons record median AQIs of $264.0$ and $298.5$ respectively, with over $65\%$ of winter days categorizing as Very Poor or Severe due to shallow radiation inversions and north-westerly agricultural stubble smoke transport.
+- **Winter Crisis**: Post-monsoon and winter seasons record median AQIs of $264.0$ and $298.5$ respectively, with over 65% of winter days categorizing as Very Poor or Severe due to shallow radiation inversions and north-westerly agricultural stubble smoke transport.
 
 ---
 
@@ -157,8 +166,8 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 ![Dominant Pollutant Distribution](outputs/plots/04_dominant_pollutants.png)
 
 #### Technical Interpretation
-- **Particulate Hegemony**: Fine particulates ($\text{PM}_{2.5}$) serve as the primary dominant pollutant on **$51.8\%$** of valid days, while respirable dust ($\text{PM}_{10}$) drives **$43.4\%$** of days.
-- **Secondary Species**: Carbon Monoxide ($\text{CO}$) accounts for **$4.4\%$** of dominant assignments (predominantly in localized stagnation events), and Ground-Level Ozone ($\text{O}_3$) accounts for **$0.35\%$** during peak photochemical summer episodes.
+- **Particulate Hegemony**: Fine particulates ($\text{PM}_{2.5}$) serve as the primary dominant pollutant on **51.8%** of valid days, while respirable dust ($\text{PM}_{10}$) drives **43.4%** of days.
+- **Secondary Species**: Carbon Monoxide ($\text{CO}$) accounts for **4.4%** of dominant assignments (predominantly in localized stagnation events), and Ground-Level Ozone ($\text{O}_3$) accounts for **0.35%** during peak photochemical summer episodes.
 
 ---
 
@@ -201,8 +210,8 @@ The platform evaluates 24 atmospheric parameters categorized into four primary g
 #### Technical Interpretation
 - **Model Architecture**: A multi-step supervised forecasting engine was constructed using 61 lag and meteorological features ($t, t-1, t-2$ of all criteria pollutants, rolling momentum, and cyclical harmonics).
 - **Out-of-Time Prospective Validation (Test Year: 2023)**:
-  - **Random Forest Regressor**: **$R^2 = 0.769$**, **$\text{RMSE} = 54.98$**, **$\text{MAE} = 39.69$**, Health Category Classification Accuracy = **$62.2\%$**.
-  - **Ridge Linear Baseline**: **$R^2 = 0.764$**, **$\text{RMSE} = 55.61$**, **$\text{MAE} = 42.40$**, Health Category Classification Accuracy = **$60.8\%$**.
+  - **Random Forest Regressor**: **$R^2 = 0.769$**, **$\text{RMSE} = 54.98$**, **$\text{MAE} = 39.69$**, Health Category Classification Accuracy = **62.2%**.
+  - **Ridge Linear Baseline**: **$R^2 = 0.764$**, **$\text{RMSE} = 55.61$**, **$\text{MAE} = 42.40$**, Health Category Classification Accuracy = **60.8%**.
 - **Feature Importance (Gini Impurity Reduction)**: Current-day AQI ($\text{AQI}_t$) and ground-level fine particulates ($\text{PM}_{2.5}(t)$) represent the strongest predictors, followed by 3-day rolling AQI momentum and Ambient Temperature ($\text{AT}_t$), confirming high atmospheric inertia in the airshed.
 
 > **Methodological Disclosure & Gap-Handling Note**: Feature construction uses `.interpolate(method="linear", limit=2).bfill().ffill()`; small gaps ($\le 2$ days) are linearly interpolated, while any longer gaps within continuous monitoring years are forward/back-filled. Target is $t+1$ (next-day AQI) trained strictly on years $< 2023$ and evaluated on 2023 out-of-time test set with zero temporal leakage.
@@ -236,12 +245,14 @@ Compliance evaluated against official CPCB 24-hour National Ambient Air Quality 
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | $\text{PM}_{10}$ | $100\ \mu\text{g}/\text{m}^3$ | $207.15\ \mu\text{g}/\text{m}^3$ | $640.19\ \mu\text{g}/\text{m}^3$ | 1,134 | **886** | **78.13%** |
 | $\text{PM}_{2.5}$ | $60\ \mu\text{g}/\text{m}^3$ | $107.35\ \mu\text{g}/\text{m}^3$ | $529.87\ \mu\text{g}/\text{m}^3$ | 1,133 | **709** | **62.58%** |
-| $\text{Benzene}$ | $5.0\ \mu\text{g}/\text{m}^3$ (Annual) | $2.32\ \mu\text{g}/\text{m}^3$ | $13.16\ \mu\text{g}/\text{m}^3$ | 1,137 | **179** | **15.74%** |
+| $\text{Benzene}^*$ | $5.0\ \mu\text{g}/\text{m}^3$ (Annual) | $2.32\ \mu\text{g}/\text{m}^3$ | $13.16\ \mu\text{g}/\text{m}^3$ | 1,137 | **179** | **15.74%** |
 | $\text{NO}_2$ | $80\ \mu\text{g}/\text{m}^3$ | $29.23\ \mu\text{g}/\text{m}^3$ | $115.59\ \mu\text{g}/\text{m}^3$ | 1,135 | **40** | **3.52%** |
 | $\text{CO}$ | $2.0\ \text{mg}/\text{m}^3$ | $1.07\ \text{mg}/\text{m}^3$ | $4.02\ \text{mg}/\text{m}^3$ | 1,136 | **32** | **2.82%** |
 | $\text{Ozone}\ (\text{O}_3)$ | $100\ \mu\text{g}/\text{m}^3$ (8-hr) | $31.05\ \mu\text{g}/\text{m}^3$ | $109.72\ \mu\text{g}/\text{m}^3$ | 1,118 | **4** | **0.36%** |
 | $\text{SO}_2$ | $80\ \mu\text{g}/\text{m}^3$ | $11.83\ \mu\text{g}/\text{m}^3$ | $47.10\ \mu\text{g}/\text{m}^3$ | 1,121 | **0** | **0.00%** |
 | $\text{NH}_3$ | $400\ \mu\text{g}/\text{m}^3$ | $20.76\ \mu\text{g}/\text{m}^3$ | $65.94\ \mu\text{g}/\text{m}^3$ | 1,128 | **0** | **0.00%** |
+
+*\*Benzene evaluated against the annual NAAQS standard on a daily basis for indicative screening only; this is not a statutory daily compliance comparison.*
 
 ---
 
